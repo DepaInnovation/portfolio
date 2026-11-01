@@ -4330,7 +4330,16 @@
         attachCursorHover(allBtn);
         projectFilterBar.appendChild(allBtn);
 
-        categoriesMap.forEach((count, cat) => {
+        const PREFERRED_CAT_ORDER = ['projects', 'robotics', 'academic', 'other'];
+        const sortedCats = Array.from(categoriesMap.keys()).sort((a, b) => {
+          const idxA = PREFERRED_CAT_ORDER.indexOf(String(a).toLowerCase().trim());
+          const idxB = PREFERRED_CAT_ORDER.indexOf(String(b).toLowerCase().trim());
+          const posA = idxA === -1 ? 999 : idxA;
+          const posB = idxB === -1 ? 999 : idxB;
+          return posA - posB;
+        });
+
+        sortedCats.forEach((cat) => {
           const btn = document.createElement('button');
           btn.className = 'filter-btn';
           btn.setAttribute('data-filter', cat.toLowerCase());
