@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Admin Portal | Control Center</title>
+  <meta name="description" content="Admin Dashboard for managing Portfolio videos, Islam threads, and projects.">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ===================================================================
+       1. THEME TOKENS & RESET
+       =================================================================== */
+    :root {
+      --bg-paper: #ffffff;
+      --bg-white: #ffffff;
+      --bg-neutral: #f5f5f7;
+      --border-black: #0a0a0a;
+      --text-black: #0a0a0a;
+      --text-muted: #555555;
+      --text-faint: #888888;
+      --grid-color: rgba(0, 0, 0, 0.07);
+      --grid-size: 26px;
+
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-yellow: #fef08a;
+
+      --shadow-offset: 4px 4px 0px var(--border-black);
+      --shadow-offset-hover: 6px 6px 0px var(--border-black);
+
+      --font-display: 'Space Grotesk', 'IBM Plex Sans Thai', sans-serif;
+      --font-body: 'Plus Jakarta Sans', 'IBM Plex Sans Thai', sans-serif;
+      --font-mono: 'Space Mono', 'IBM Plex Sans Thai', monospace;
+
+      --transition: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background-color: var(--bg-white);
+      color: var(--text-black);
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.6;
+      background-color: var(--bg-paper);
+      background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Custom Cursor */
+    @media (hover: hover) and (pointer: fine) {
+
+      *,
+      *::before,
+      *::after,
+      html,
+      body {
+        cursor: none !important;
+      }
+    }
+
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999999;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease, transform 0.15s ease-out;
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+
+      .cursor-dot,
+      .cursor-ring {
+        display: block;
+      }
+    }
+
+    .cursor-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--text-black);
+    }
+
+    .cursor-ring {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid var(--text-black);
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.2s ease;
+    }
+
+    body.cursor-hover .cursor-ring {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(0, 0, 0, 0.08);
+      border-width: 2px;
+    }
+
+    /* ===================================================================
+       2. TOP NAVBAR
+       =================================================================== */
+    .admin-navbar {
+      background: #ffffff;
+      border-bottom: 2px solid var(--border-black);
+      padding: 14px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-black);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--accent-green);
+      display: inline-block;
+      box-shadow: 0 0 0 2px var(--border-black);
+    }
+
+    .admin-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-pill {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      background: var(--bg-neutral);
+      border: 1.5px solid var(--border-black);
+      border-radius: 999px;
+      color: var(--text-black);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn {
+      font-family: 'IBM Plex Sans Thai', var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 8px 16px;
+      background: #ffffff;
+      color: var(--text-black);
+      border: 2px solid var(--border-black);
+      border-radius: 8px;
+      box-shadow: var(--shadow-offset);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+    }
+
+    .btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-offset-hover);
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--border-black);
+    }
+
+    .btn-primary {
+      background: var(--text-black);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #222222;
+      color: #ffffff;
+    }
+
+    .btn-danger {
+      background: #fff1f2;
+      color: var(--accent-red);
+      border-color: var(--accent-red);
+      box-shadow: 4px 4px 0px var(--accent-red);
+    }
+
+    .btn-danger:hover {
+      background: var(--accent-red);
+      color: #ffffff;
+      box-shadow: 6px 6px 0px var(--border-black);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 0.75rem;
+      box-shadow: 2px 2px 0px var(--border-black);
+    }
+
+    .btn-sm:hover {
+      box-shadow: 4px 4px 0px var(--border-black);
+    }
+
+    /* ===================================================================
+       3. LOGIN SCREEN
+       =================================================================== */
+    .login-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .login-card {
+      background: #ffffff;
+      border: 2.5px solid var(--border-black);
+      border-radius: 12px;
+      box-shadow: 8px 8px 0px var(--border-black);
+      max-width: 440px;
+      width: 100%;
+      padding: 36px 32px;
+    }
+
+    .login-badge {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .login-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .login-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--text-black);
+      background: #ffffff;
+      border: 2px solid var(--border-black);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--text-black);
+      box-shadow: 3px 3px 0px var(--border-black);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .alert {
+      padding: 10px 14px;
+      border: 2px solid var(--border-black);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .alert-error {
+      background: #fef2f2;
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+    }
+
+    .alert-info {
+      background: #f0fdf4;
+      border-color: #10b981;
+      color: #065f46;
+    }
+
+    /* ===================================================================
+       4. DASHBOARD CONTAINER & TABS
+       =================================================================== */
+    .dashboard-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 30px 20px 80px;
+      flex: 1;
+    }
+
+    .dashboard-tabs {
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid var(--border-black);
+      margin-bottom: 28px;
+      padding-bottom: 2px;
+      overflow-x: auto;
+    }
+
+    .dash-tab-btn {
+      font-family: 'IBM Plex Sans Thai', var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      background: transparent;
+      border: 2px solid transparent;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      transition: all var(--transition);
+    }
+
+    .dash-tab-btn:hover {
+      color: var(--text-black);
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .dash-tab-btn.active {
+      color: var(--text-black);
+      background: #ffffff;
+      border-color: var(--border-black);
+      box-shadow: 0 -2px 0 var(--border-black);
+      margin-bottom: -4px;
+      padding-bottom: 12px;
+    }
+
+    .tab-count-badge {
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      background: var(--bg-neutral);
+      border: 1px solid var(--border-black);
+      border-radius: 999px;
+    }
+
+    /* Section Control Header */
+    .section-control-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      background: #ffffff;
+      border: 2px solid var(--border-black);
+      border-radius: 10px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-offset);
+    }
+
+    .control-search {
+      flex: 1;
+      min-width: 240px;
+      max-width: 400px;
+    }
+
+    .control-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Content Cards Grid */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .admin-card {
+      background: #ffffff;
+      border: 2px solid var(--border-black);
+      border-radius: 10px;
+      box-shadow: var(--shadow-offset);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .admin-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-offset-hover);
+    }
+
+    .card-thumb-wrap {
+      height: 180px;
+      background: var(--bg-neutral);
+      border-bottom: 2px solid var(--border-black);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-thumb-placeholder {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .cat-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-black);
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .publish-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--border-black);
+    }
+
+    .publish-badge.published {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .publish-badge.draft {
+      background: #f4f4f5;
+      color: #71717a;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .card-footer {
+      border-top: 1.5px dashed #e4e4e7;
+      padding-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Message Cards (Anonymous Inbox) */
+    .msg-card {
+      background: #ffffff;
+      border: 2px solid var(--border-black);
+      border-radius: 12px;
+      box-shadow: var(--shadow-offset);
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+      min-height: 180px;
+    }
+
+    .msg-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-offset-hover);
+    }
+
+    .msg-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px dashed #e4e4e7;
+    }
+
+    .msg-tag-badge {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      background: #f4f4f5;
+      border: 1.5px solid var(--border-black);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .msg-time {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-faint);
+    }
+
+    .msg-content {
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--text-black);
+      white-space: pre-wrap;
+      word-break: break-word;
+      flex: 1;
+      padding: 4px 0 16px;
+      font-family: inherit;
+    }
+
+    .msg-footer {
+      border-top: 1.5px dashed #e4e4e7;
+      padding-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* Multi-image preview chips */
+    .images-chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .image-chip-item {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      border: 1.5px solid var(--border-black);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .image-chip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-chip-remove {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 18px;
+      height: 18px;
+      background: var(--accent-red);
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* ===================================================================
+       5. MODAL FORM
+       =================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border: 2.5px solid var(--border-black);
+      border-radius: 12px;
+      box-shadow: 8px 8px 0px var(--border-black);
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 2px solid var(--border-black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--border-black);
+      border-radius: 6px;
+      background: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 0px var(--border-black);
+      transition: all var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--text-black);
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 2px solid var(--border-black);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      background: #ffffff;
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+    }
+
+    /* Checkbox toggle */
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-custom {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border-black);
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      transition: all var(--transition);
+    }
+
+    input[type="checkbox"]:checked+.checkbox-custom {
+      background: var(--text-black);
+      color: #ffffff;
+    }
+
+    /* Upload zone */
+    .upload-zone {
+      border: 2px dashed var(--border-black);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      background: var(--bg-neutral);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .upload-zone:hover {
+      background: #ffffff;
+      border-color: #000000;
+    }
+
+    .upload-zone p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Tech Chips Input */
+    .tech-input-box {
+      border: 2px solid var(--border-black);
+      border-radius: 8px;
+      padding: 6px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      background: #ffffff;
+      min-height: 44px;
+    }
+
+    .tech-chips-active {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-chip-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-neutral);
+      border: 1.5px solid var(--border-black);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .tech-chip-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent-red);
+      padding: 0 2px;
+    }
+
+    .tech-chip-input {
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      flex: 1;
+      min-width: 140px;
+      padding: 4px;
+      background: transparent;
+    }
+
+    /* Awards Repeater */
+    .awards-editor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .award-editor-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fafafa;
+      border: 1.5px solid var(--border-black);
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+
+    .award-editor-level {
+      width: 130px;
+      flex-shrink: 0;
+      font-size: 0.82rem;
+      padding: 6px 8px;
+    }
+
+    .award-editor-title {
+      flex: 1;
+      font-size: 0.85rem;
+      padding: 6px 8px;
+    }
+
+    .award-editor-detail {
+      flex: 1.3;
+      font-size: 0.85rem;
+      padding: 6px 8px;
+    }
+
+    .award-btn-action {
+      background: #ffffff;
+      border: 1.5px solid var(--border-black);
+      border-radius: 6px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      line-height: 1;
+      box-shadow: 1px 1px 0px var(--border-black);
+    }
+
+    .award-btn-action:hover {
+      background: #f0f0f0;
+    }
+
+    /* Media Editor */
+    .media-editor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-editor-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fafafa;
+      border: 1.5px solid var(--border-black);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    .media-editor-thumb {
+      width: 68px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1.5px solid var(--border-black);
+      background: #000000;
+      flex-shrink: 0;
+    }
+
+    .media-editor-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .media-editor-type {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .media-editor-caption {
+      width: 100%;
+      font-size: 0.82rem;
+      padding: 5px 8px;
+      border: 1.5px solid var(--border-black);
+      border-radius: 4px;
+    }
+
+    /* Empty state */
+    .admin-empty-state {
+      padding: 60px 20px;
+      text-align: center;
+      background: #ffffff;
+      border: 2px dashed var(--border-black);
+      border-radius: 12px;
+    }
+
+    .admin-empty-state h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+
+    .admin-empty-state p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--text-black);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast.success {
+      background: #065f46;
+      border: 1.5px solid #10b981;
+    }
+
+    .toast.error {
+      background: #991b1b;
+      border: 1.5px solid var(--accent-red);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Custom Cursor Elements (Desktop only) -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- TOP NAVBAR -->
+  <header class="admin-navbar" id="adminNavbar">
+    <a href="index.html" class="admin-brand">
+      <span class="status-dot"></span>
+      <span>PORTFOLIO // ADMIN</span>
+    </a>
+    <div class="admin-nav-actions" id="navActions" style="display: none;">
+      <span class="user-pill" id="userPill">
+        <span>●</span>
+        <span id="userEmailText">admin@portfolio.local</span>
+      </span>
+      <a href="../index.html" target="_blank" class="btn btn-sm" title="Open Public Portfolio in new tab">
+        <span>🌐 ดูหน้าเว็บจริง</span>
+      </a>
+      <button class="btn btn-sm btn-danger" id="signOutBtn" type="button">
+        <span>🚪 ออกจากระบบ</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 1. LOGIN SCREEN -->
+  <div class="login-container" id="loginView">
+    <div class="login-card">
+      <span class="login-badge">// ADMIN ACCESS</span>
+      <h1 class="login-title">Control Center</h1>
+      <p class="login-desc">เข้าสู่ระบบเพื่อจัดการวิดีโอ เธรด และผลงานบนพอร์ตโฟลิโอของคุณ</p>
+
+      <div id="loginAlert" style="display: none;"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="admin@example.com" required
+            autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required
+            autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginSubmitBtn" style="width: 100%; margin-top: 8px;">
+          <span>เข้าสู่ระบบ</span>
+        </button>
+      </form>
+
+      <div class="alert alert-info" style="margin-top: 24px; font-size: 0.8rem; line-height: 1.5;">
+        <span> <b>วิธีสร้างบัญชี Admin:</b> หากยังไม่มีบัญชี สามารถเข้าไปที่ <b>Supabase Dashboard</b> →
+          <b>Authentication</b> → <b>Users</b> → กด <b>Add user</b> เพื่อสร้าง Email และ Password
+          ของคุณเองได้ทันทีครับ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. DASHBOARD VIEW -->
+  <main class="dashboard-container" id="dashboardView" style="display: none;">
+    <!-- Navigation Tabs -->
+    <nav class="dashboard-tabs" role="tablist">
+      <button class="dash-tab-btn active" data-tab="videos" type="button">
+        <span>🎬 วิดีโอ (Videos)</span>
+        <span class="tab-count-badge" id="videoCountBadge">0</span>
+      </button>
+      <button class="dash-tab-btn" data-tab="islam" type="button">
+        <span>📖 เธรด (Islam Threads)</span>
+        <span class="tab-count-badge" id="islamCountBadge">0</span>
+      </button>
+      <button class="dash-tab-btn" data-tab="projects" type="button">
+        <span>🚀 ผลงาน (Projects)</span>
+        <span class="tab-count-badge" id="projectCountBadge">0</span>
+      </button>
+      <button class="dash-tab-btn" data-tab="messages" type="button">
+        <span>💌 ข้อความนิรนาม (Inbox)</span>
+        <span class="tab-count-badge" id="messageCountBadge">0</span>
+      </button>
+    </nav>
+
+    <!-- SECTION A: VIDEOS TAB -->
+    <section class="tab-section" id="tabVideos">
+      <div class="section-control-bar">
+        <input type="text" class="form-input control-search" id="videoSearchInput"
+          placeholder="🔍 ค้นหาวิดีโอ (ชื่อ, หมวดหมู่, หัวข้อ)...">
+        <div class="control-actions">
+          <button class="btn btn-primary" id="addVideoBtn" type="button">
+            <span>+ เพิ่มวิดีโอใหม่</span>
+          </button>
+        </div>
+      </div>
+      <div class="items-grid" id="videosListGrid"></div>
+    </section>
+
+    <!-- SECTION B: ISLAM THREADS TAB -->
+    <section class="tab-section" id="tabIslam" style="display: none;">
+      <div class="section-control-bar">
+        <input type="text" class="form-input control-search" id="islamSearchInput"
+          placeholder="🔍 ค้นหาเธรด (แคปชัน, หมวดหมู่)...">
+        <div class="control-actions">
+          <button class="btn btn-primary" id="addIslamBtn" type="button">
+            <span>+ เพิ่มเธรดใหม่</span>
+          </button>
+        </div>
+      </div>
+      <div class="items-grid" id="islamListGrid"></div>
+    </section>
+
+    <!-- SECTION C: PROJECTS TAB -->
+    <section class="tab-section" id="tabProjects" style="display: none;">
+      <div class="section-control-bar">
+        <input type="text" class="form-input control-search" id="projectSearchInput"
+          placeholder="🔍 ค้นหาผลงาน (ชื่อ, แท็ก, รางวัล)...">
+        <div class="control-actions">
+          <button class="btn btn-primary" id="addProjectBtn" type="button">
+            <span>+ เพิ่มผลงานใหม่</span>
+          </button>
+        </div>
+      </div>
+      <div class="items-grid" id="projectsListGrid"></div>
+    </section>
+
+    <!-- SECTION D: ANONYMOUS MESSAGES TAB -->
+    <section class="tab-section" id="tabMessages" style="display: none;">
+      <div class="section-control-bar">
+        <input type="text" class="form-input control-search" id="messageSearchInput"
+          placeholder="🔍 ค้นหาข้อความนิรนาม หรือแท็กอารมณ์...">
+        <div class="control-actions">
+          <button class="btn" id="refreshMessagesBtn" type="button">
+            <span>🔄 รีเฟรชข้อความ</span>
+          </button>
+        </div>
+      </div>
+      <div class="items-grid" id="messagesListGrid"></div>
+    </section>
+  </main>
+
+  <!-- 3. MODAL: VIDEO FORM -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="videoModalTitle">เพิ่มวิดีโอใหม่</h3>
+        <button class="modal-close-btn" type="button" data-close-modal="videoModal">✕</button>
+      </div>
+      <form id="videoForm">
+        <div class="modal-body">
+          <input type="hidden" id="videoFormId">
+          <div class="form-group">
+            <label class="form-label" for="vTitle">ชื่อคลิปวิดีโอ *</label>
+            <input type="text" id="vTitle" class="form-input" placeholder="เช่น Limits & Continuity" required>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="vCategory">วิชา (Subject) *</label>
+              <select id="vCategory" class="form-select" required>
+                <option value="Calculus">แคล (Calculus)</option>
+                <option value="Computer">คอม (Computer)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="vSeriesLabel">หัวข้อ / Series Label</label>
+              <input type="text" id="vSeriesLabel" class="form-input" placeholder="เช่น Limits and Continuity">
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="vUrl">ลิงก์ YouTube (URL) *</label>
+              <input type="url" id="vUrl" class="form-input" placeholder="https://www.youtube.com/watch?v=..." required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="vDuration">ความยาวคลิป</label>
+              <input type="text" id="vDuration" class="form-input" placeholder="เช่น 18:45">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="vDesc">คำอธิบายย่อ</label>
+            <textarea id="vDesc" class="form-textarea" placeholder="อธิบายเนื้อหาของคลิปสั้นๆ"></textarea>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="vSort">ลำดับการแสดงผล (Sort Order)</label>
+              <input type="number" id="vSort" class="form-input" value="1" style="width: 100px;">
+            </div>
+            <label class="checkbox-label" style="margin-top: 18px;">
+              <input type="checkbox" id="vPublished" checked style="display: none;">
+              <span class="checkbox-custom">✓</span>
+              <span>เผยแพร่ทันที (Published)</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-close-modal="videoModal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary" id="videoSubmitBtn">บันทึกข้อมูล</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. MODAL: ISLAM THREAD FORM -->หมวดหมู่ (Category)
+
+  <div class="modal-overlay" id="islamModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="islamModalTitle">เพิ่มเธรดใหม่</h3>
+        <button class="modal-close-btn" type="button" data-close-modal="islamModal">✕</button>
+      </div>
+      <form id="islamForm">
+        <div class="modal-body">
+          <input type="hidden" id="islamFormId">
+          <div class="form-group">
+            <label class="form-label" for="iCategory">ชื่อเจ้าของ</label>
+            <input type="text" id="iCategory" class="form-input"
+              placeholder="เช่น Tadabbur // Quran หรือ Hadith // Reflection" value="@">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="iCaption">ข้อความเธรด (Caption)</label>
+            <textarea id="iCaption" class="form-textarea"
+              placeholder="เขียนข้อความหรือเธรดให้กำลังใจที่นี่ (จะมีหรือไม่มีก็ได้)..."
+              style="min-height: 110px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">รูปภาพสไลด์เธรด (Slide Images)</label>
+            <div class="upload-zone" id="islamUploadZone">
+              <span style="font-size: 1.5rem;">📷</span>
+              <p><b>คลิกเพื่อเลือกรูปภาพ</b> หรือลากไฟล์มาวางที่นี่ (รองรับหลายรูป)</p>
+              <input type="file" id="islamFileInput" multiple accept="image/*" style="display: none;">
+            </div>
+            <div class="images-chip-list" id="islamUploadedChips"></div>
+          </div>
+          <label class="checkbox-label">
+            <input type="checkbox" id="iPublished" checked style="display: none;">
+            <span class="checkbox-custom">✓</span>
+            <span>เผยแพร่ทันที (Published)</span>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-close-modal="islamModal">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary" id="islamSubmitBtn">บันทึกเธรด</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. MODAL: PROJECT FORM -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-card" style="max-width: 760px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="projectModalTitle">เพิ่มผลงานใหม่</h3>
+        <button class="modal-close-btn" type="button" data-close-modal="projectModal">✕</button>
+      </div>
+      <form id="projectForm">
+        <div class="modal-body">
+          <input type="hidden" id="projectFormId">
+
+          <!-- Slug / ID field -->
+          <div class="form-group">
+            <label class="form-label" for="pSlug">Project ID (Slug) *</label>
+            <input type="text" id="pSlug" class="form-input" placeholder="เช่น d-kebun หรือ ws-smart-control" required>
+            <small id="pSlugHelp"
+              style="font-size: 0.78rem; color: var(--text-muted); display: block; margin-top: 4px;">
+              รหัสอ้างอิง URL สำหรับหน้า project.html?id=... (สร้างครั้งแรกแล้วจะถูกล็อค)
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pTitle">ชื่อผลงาน (Project Title) *</label>
+            <input type="text" id="pTitle" class="form-input" placeholder="เช่น D-kebun หรือ WS smart control" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="pCategory">หมวดหมู่ *</label>
+              <select id="pCategory" class="form-select" required>
+                <option value="Projects">Projects</option>
+                <option value="Robotics">Robotics</option>
+                <option value="Academic">Academic</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pAward">รางวัลสรุปย่อบนการ์ด (Award Summary)</label>
+              <input type="text" id="pAward" class="form-input" placeholder="เช่น National Gold Award 2024">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pTags">แท็กการ์ดหน้าแรก (คั่นด้วยจุลภาค ",")</label>
+            <input type="text" id="pTags" class="form-input" placeholder="เช่น Website, UX/UI, Machine Learning">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pDesc">คำอธิบายย่อ (One-line Description)</label>
+            <textarea id="pDesc" class="form-textarea" placeholder="อธิบายผลงานสั้นๆ สำหรับแสดงในหัวข้อหน้าเว็บ"
+              style="min-height: 70px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="pLink">ลิงก์ผลงาน (Demo / GitHub)</label>
+            <input type="url" id="pLink" class="form-input" placeholder="https://...">
+          </div>
+
+          <!-- NEW DETAIL FIELDS -->
+          <!-- 1. ที่มาและปัญหา (problem) -->
+          <div class="form-group">
+            <label class="form-label" for="pProblem">
+              ที่มาและปัญหา (problem)
+              <span style="font-weight: 400; font-size: 0.8rem; color: var(--text-muted);">(ขึ้นบรรทัดใหม่เว้นวรรค 1
+                บรรทัดเพื่อเริ่มย่อหน้าใหม่)</span>
+            </label>
+            <textarea id="pProblem" class="form-textarea" maxlength="3000"
+              placeholder="อธิบายปัญหาที่พบ จุดเริ่มต้น หรือแรงบันดาลใจในการทำโครงงานนี้..."
+              style="min-height: 110px;"></textarea>
+          </div>
+
+          <!-- 2. สิ่งที่ผมทำ (my_role) -->
+          <div class="form-group">
+            <label class="form-label" for="pMyRole">
+              สิ่งที่ผมทำ (my_role)
+              <span style="font-weight: 400; font-size: 0.8rem; color: var(--text-muted);">(ขึ้นบรรทัดใหม่เว้นวรรค 1
+                บรรทัดเพื่อเริ่มย่อหน้าใหม่)</span>
+            </label>
+            <textarea id="pMyRole" class="form-textarea" maxlength="3000"
+              placeholder="อธิบายบทบาท หน้าที่ การพัฒนา การแก้ปัญหา หรือสิ่งที่ได้เรียนรู้..."
+              style="min-height: 120px;"></textarea>
+          </div>
+
+          <!-- 3. เทคโนโลยี (tech chips) -->
+          <div class="form-group">
+            <label class="form-label" for="pTechInput">
+              เทคโนโลยี (tech)
+              <span style="font-weight: 400; font-size: 0.8rem; color: var(--text-muted);">(พิมพ์คำแล้วกด Enter
+                เพื่อเพิ่ม)</span>
+            </label>
+            <div class="tech-input-box" id="pTechContainer">
+              <div class="tech-chips-active" id="pTechChips"></div>
+              <input type="text" id="pTechInput" class="tech-chip-input"
+                placeholder="พิมพ์ชื่อเทคโนโลยี แล้วกด Enter...">
+            </div>
+          </div>
+
+          <!-- 4. รางวัล (awards) -->
+          <div class="form-group">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <label class="form-label" style="margin-bottom: 0;">รางวัล (awards)</label>
+              <button type="button" class="btn btn-sm" id="addAwardBtn">+ เพิ่มรางวัล</button>
+            </div>
+            <div id="pAwardsListWrap" class="awards-editor-list">
+              <!-- Dynamically populated award rows -->
+            </div>
+          </div>
+
+          <!-- 5. รูปและวิดีโอ (media) -->
+          <div class="form-group">
+            <label class="form-label">รูปและวิดีโอ (media)</label>
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
+              <div class="upload-zone" id="projectMediaUploadZone" style="flex: 1; min-width: 200px; padding: 14px;">
+                <span style="font-size: 1.3rem;">📷</span>
+                <p><b>เลือกรูปภาพ</b> (ย่อเป็น WebP ~1080px อัตโนมัติ)</p>
+                <input type="file" id="projectMediaFileInput" multiple accept="image/*" style="display: none;">
+              </div>
+            </div>
+
+            <!-- YouTube input row -->
+            <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+              <input type="url" id="pYoutubeInput" class="form-input"
+                placeholder="วางลิงก์ YouTube (https://www.youtube.com/watch?v=... หรือ https://youtu.be/...)">
+              <button type="button" class="btn btn-sm" id="addYoutubeBtn" style="white-space: nowrap;">+ เพิ่ม
+                YouTube</button>
+            </div>
+
+            <div id="pMediaListWrap" class="media-editor-list">
+              <!-- Dynamically populated media rows -->
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="pSort">ลำดับการแสดงผล</label>
+              <input type="number" id="pSort" class="form-input" value="1" style="width: 100px;">
+            </div>
+            <label class="checkbox-label" style="margin-top: 18px;">
+              <input type="checkbox" id="pPublished" checked style="display: none;">
+              <span class="checkbox-custom">✓</span>
+              <span>เผยแพร่ทันที (Published)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer" style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <button type="button" class="btn" id="previewProjectBtn">ดูตัวอย่าง ↗</button>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn" data-close-modal="projectModal">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary" id="projectSubmitBtn">บันทึกผลงาน</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="adminToast">
+    <span id="toastIcon">✓</span>
+    <span id="toastMsg">บันทึกข้อมูลสำเร็จ</span>
+  </div>
+
+  <!-- LOAD CONFIG & SUPABASE JS CLIENT (v2 CDN) -->
+  <script src="../config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // =====================================================================
+      // 1. SUPABASE CLIENT INITIALIZATION
+      // =====================================================================
+      const supabaseUrl = window.SUPABASE_URL || 'https://fakucjlewuxhihbhsanu.supabase.co';
+      const supabaseKey = window.SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_OfEEl4p2-U2BBA7OFxgr9g_tG0dtGTZ';
+      const BUCKET_NAME = (window.SupabaseApp && window.SupabaseApp.config && window.SupabaseApp.config.bucketName) || 'site-images';
+
+      const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+      // DOM Elements
+      const loginView = document.getElementById('loginView');
+      const dashboardView = document.getElementById('dashboardView');
+      const navActions = document.getElementById('navActions');
+      const userEmailText = document.getElementById('userEmailText');
+      const loginForm = document.getElementById('loginForm');
+      const loginAlert = document.getElementById('loginAlert');
+      const signOutBtn = document.getElementById('signOutBtn');
+
+      const videoCountBadge = document.getElementById('videoCountBadge');
+      const islamCountBadge = document.getElementById('islamCountBadge');
+      const projectCountBadge = document.getElementById('projectCountBadge');
+      const messageCountBadge = document.getElementById('messageCountBadge');
+
+      const videosListGrid = document.getElementById('videosListGrid');
+      const islamListGrid = document.getElementById('islamListGrid');
+      const projectsListGrid = document.getElementById('projectsListGrid');
+      const messagesListGrid = document.getElementById('messagesListGrid');
+
+      // State
+      let activeTab = 'videos';
+      let currentSession = null;
+      let allVideosData = [];
+      let allIslamData = [];
+      let allProjectsData = [];
+      let allMessagesData = [];
+
+      // Temporary images array for current Islam Thread edit/create
+      let currentIslamImages = [];
+
+      // =====================================================================
+      // 2. CUSTOM CURSOR
+      // =====================================================================
+      const cursorDot = document.getElementById('cursorDot');
+      const cursorRing = document.getElementById('cursorRing');
+      const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+      function attachCursorHover(el) {
+        if (!el || isTouchDevice || !cursorDot) return;
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+      }
+
+      if (!isTouchDevice && cursorDot && cursorRing) {
+        let mouseX = -100, mouseY = -100, ringX = -100, ringY = -100;
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+        }, { passive: true });
+
+        function animateCursor() {
+          ringX += (mouseX - ringX) * 0.18;
+          ringY += (mouseY - ringY) * 0.18;
+          cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+          requestAnimationFrame(animateCursor);
+        }
+        requestAnimationFrame(animateCursor);
+      }
+
+      function refreshCursorHover() {
+        if (isTouchDevice) return;
+        document.querySelectorAll('a, button, input, select, textarea, .admin-card, .upload-zone').forEach(attachCursorHover);
+      }
+
+      // =====================================================================
+      // 3. TOAST HELPER
+      // =====================================================================
+      const toastEl = document.getElementById('adminToast');
+      const toastMsg = document.getElementById('toastMsg');
+      const toastIcon = document.getElementById('toastIcon');
+      let toastTimer = null;
+
+      function showToast(message, type = 'success') {
+        if (!toastEl) return;
+        clearTimeout(toastTimer);
+        toastMsg.textContent = message;
+        toastIcon.textContent = type === 'success' ? '✓' : '✕';
+        toastEl.className = `toast show ${type}`;
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('show');
+        }, 3200);
+      }
+
+      // =====================================================================
+      // 4. AUTHENTICATION (Supabase Auth)
+      // =====================================================================
+      async function checkSession() {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (session && session.user) {
+          handleAuthSuccess(session);
+        } else {
+          handleAuthSignedOut();
+        }
+      }
+
+      supabase.auth.onAuthStateChange((event, session) => {
+        if (session && session.user) {
+          handleAuthSuccess(session);
+        } else {
+          handleAuthSignedOut();
+        }
+      });
+
+      function handleAuthSuccess(session) {
+        currentSession = session;
+        userEmailText.textContent = session.user.email || 'Admin User';
+        loginView.style.display = 'none';
+        dashboardView.style.display = 'block';
+        navActions.style.display = 'flex';
+        loadAllData();
+      }
+
+      function handleAuthSignedOut() {
+        currentSession = null;
+        loginView.style.display = 'flex';
+        dashboardView.style.display = 'none';
+        navActions.style.display = 'none';
+      }
+
+      // Login Form Submit
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        const submitBtn = document.getElementById('loginSubmitBtn');
+
+        submitBtn.disabled = true;
+        submitBtn.querySelector('span').textContent = 'กำลังตรวจสอบ...';
+        loginAlert.style.display = 'none';
+
+        try {
+          const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+          if (error) throw error;
+          showToast('เข้าสู่ระบบสำเร็จ ยินดีต้อนรับครับ');
+        } catch (err) {
+          console.error('[Auth Error]', err);
+          loginAlert.className = 'alert alert-error';
+          loginAlert.textContent = '❌ อีเมลหรือรหัสผ่านไม่ถูกต้อง หรือยังไม่ได้สร้าง User ใน Supabase (' + (err.message || 'Login failed') + ')';
+          loginAlert.style.display = 'block';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.querySelector('span').textContent = 'เข้าสู่ระบบ';
+        }
+      });
+
+      // Sign Out
+      signOutBtn.addEventListener('click', async () => {
+        if (!confirm('ต้องการออกจากระบบแอดมินใช่หรือไม่?')) return;
+        await supabase.auth.signOut();
+        showToast('ออกจากระบบเรียบร้อย');
+      });
+
+      // =====================================================================
+      // 5. TABS NAVIGATION
+      // =====================================================================
+      const tabBtns = document.querySelectorAll('.dash-tab-btn');
+      const tabSections = {
+        videos: document.getElementById('tabVideos'),
+        islam: document.getElementById('tabIslam'),
+        projects: document.getElementById('tabProjects'),
+        messages: document.getElementById('tabMessages')
+      };
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-tab');
+          if (!target || target === activeTab) return;
+
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          Object.keys(tabSections).forEach(k => {
+            if (tabSections[k]) {
+              tabSections[k].style.display = k === target ? 'block' : 'none';
+            }
+          });
+
+          activeTab = target;
+        });
+      });
+
+      // Escape HTML helper
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // =====================================================================
+      // 6. DATA FETCHING (All Tables)
+      // =====================================================================
+      async function loadAllData() {
+        await Promise.all([loadVideos(), loadIslamPosts(), loadProjects(), loadMessages()]);
+        refreshCursorHover();
+      }
+
+      // 6.1 VIDEOS
+      async function loadVideos() {
+        try {
+          const { data, error } = await supabase
+            .from('videos')
+            .select('*')
+            .order('sort_order', { ascending: true });
+
+          if (error) throw error;
+          allVideosData = Array.isArray(data) ? data : [];
+          videoCountBadge.textContent = allVideosData.length;
+          renderVideos(allVideosData);
+        } catch (err) {
+          console.error('[Videos load error]', err);
+          showToast('ไม่สามารถโหลดวิดีโอได้: ' + err.message, 'error');
+        }
+      }
+
+      function renderVideos(items) {
+        videosListGrid.innerHTML = '';
+        if (items.length === 0) {
+          videosListGrid.innerHTML = `
+            <div class="admin-empty-state" style="grid-column: 1 / -1;">
+              <h3>ยังไม่มีวิดีโอในระบบ</h3>
+              <p>กดปุ่ม "+ เพิ่มวิดีโอใหม่" ด้านบนเพื่อเริ่มอัปโหลดคลิปแรกของคุณ</p>
+            </div>
+          `;
+          return;
+        }
+
+        items.forEach(item => {
+          const ytId = window.SupabaseApp ? window.SupabaseApp.getYouTubeVideoId(item.video_url) : '';
+          const thumbUrl = item.thumbnail_path
+            ? (window.SupabaseApp ? window.SupabaseApp.getStorageImageUrl(item.thumbnail_path) : item.thumbnail_path)
+            : (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
+
+          const card = document.createElement('article');
+          card.className = 'admin-card';
+          card.innerHTML = `
+            <div class="card-thumb-wrap">
+              ${thumbUrl ? `<img src="${thumbUrl}" class="card-thumb-img" alt="${item.title}" loading="lazy">` : `<div class="card-thumb-placeholder"><span>🎬</span><span>No Thumbnail</span></div>`}
+            </div>
+            <div class="card-body">
+              <div class="card-meta-row">
+                <span class="cat-badge">${item.category || 'General'}</span>
+                <span class="publish-badge ${item.published ? 'published' : 'draft'}">
+                  ${item.published ? '● Published' : '○ Draft'}
+                </span>
+              </div>
+              <h3 class="card-title">${item.title || 'Untitled Video'}</h3>
+              <p class="card-desc">${item.description || 'ไม่มีคำอธิบาย'}</p>
+              <div class="card-footer">
+                <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint);">
+                  ⏱️ ${item.duration || '--:--'}
+                </span>
+                <div class="card-actions-group">
+                  ${item.video_url ? `<a href="${item.video_url}" target="_blank" class="btn btn-sm" title="Open YouTube">ดูคลิป</a>` : ''}
+                  <button class="btn btn-sm edit-video-btn" data-id="${item.id}" type="button">แก้ไข</button>
+                  <button class="btn btn-sm btn-danger delete-video-btn" data-id="${item.id}" type="button">ลบ</button>
+                </div>
+              </div>
+            </div>
+          `;
+
+          card.querySelector('.edit-video-btn').addEventListener('click', () => openVideoEdit(item));
+          card.querySelector('.delete-video-btn').addEventListener('click', () => deleteVideo(item.id, item.title));
+          videosListGrid.appendChild(card);
+        });
+        refreshCursorHover();
+      }
+
+      // 6.2 ISLAM THREADS
+      async function loadIslamPosts() {
+        try {
+          const { data, error } = await supabase
+            .from('islam_posts')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (error) throw error;
+          allIslamData = Array.isArray(data) ? data : [];
+          islamCountBadge.textContent = allIslamData.length;
+          renderIslam(allIslamData);
+        } catch (err) {
+          console.error('[Islam load error]', err);
+          showToast('ไม่สามารถโหลดเธรดได้: ' + err.message, 'error');
+        }
+      }
+
+      function renderIslam(items) {
+        islamListGrid.innerHTML = '';
+        if (items.length === 0) {
+          islamListGrid.innerHTML = `
+            <div class="admin-empty-state" style="grid-column: 1 / -1;">
+              <h3>ยังไม่มีเธรดในระบบ</h3>
+              <p>กดปุ่ม "+ เพิ่มเธรดใหม่" ด้านบนเพื่อเขียนเธรดและอัปโหลดรูปภาพ</p>
+            </div>
+          `;
+          return;
+        }
+
+        items.forEach(item => {
+          const slides = Array.isArray(item.images) ? item.images : [];
+          const firstImg = slides.length > 0 ? (window.SupabaseApp ? window.SupabaseApp.getStorageImageUrl(slides[0]) : slides[0]) : '';
+
+          const card = document.createElement('article');
+          card.className = 'admin-card';
+          card.innerHTML = `
+            <div class="card-thumb-wrap">
+              ${firstImg ? `<img src="${firstImg}" class="card-thumb-img" alt="Thread preview" loading="lazy">` : `<div class="card-thumb-placeholder"><span>📖</span><span>Text Only Thread</span></div>`}
+            </div>
+            <div class="card-body">
+              <div class="card-meta-row">
+                <span class="cat-badge">${item.category || 'Tadabbur'}</span>
+                <span class="publish-badge ${item.published ? 'published' : 'draft'}">
+                  ${item.published ? '● Published' : '○ Draft'}
+                </span>
+              </div>
+              <p class="card-desc" style="font-size: 0.95rem; color: var(--text-black);">${item.caption || '<span style="color:var(--text-faint); font-style:italic;">(ไม่มีข้อความแคปชัน)</span>'}</p>
+              <div class="card-footer">
+                <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint);">
+                  🖼️ ${slides.length} รูป
+                </span>
+                <div class="card-actions-group">
+                  <button class="btn btn-sm edit-islam-btn" data-id="${item.id}" type="button">แก้ไข</button>
+                  <button class="btn btn-sm btn-danger delete-islam-btn" data-id="${item.id}" type="button">ลบ</button>
+                </div>
+              </div>
+            </div>
+          `;
+
+          card.querySelector('.edit-islam-btn').addEventListener('click', () => openIslamEdit(item));
+          card.querySelector('.delete-islam-btn').addEventListener('click', () => deleteIslamPost(item.id));
+          islamListGrid.appendChild(card);
+        });
+        refreshCursorHover();
+      }
+
+      // 6.3 PROJECTS
+      async function loadProjects() {
+        try {
+          const { data, error } = await supabase
+            .from('projects')
+            .select('*')
+            .order('sort_order', { ascending: true });
+
+          if (error) throw error;
+          allProjectsData = Array.isArray(data) ? data : [];
+          projectCountBadge.textContent = allProjectsData.length;
+          renderProjects(allProjectsData);
+        } catch (err) {
+          console.error('[Projects load error]', err);
+          showToast('ไม่สามารถโหลดโปรเจกต์ได้: ' + err.message, 'error');
+        }
+      }
+
+      function renderProjects(items) {
+        projectsListGrid.innerHTML = '';
+        if (items.length === 0) {
+          projectsListGrid.innerHTML = `
+            <div class="admin-empty-state" style="grid-column: 1 / -1;">
+              <h3>ยังไม่มีผลงานในระบบ</h3>
+              <p>กดปุ่ม "+ เพิ่มผลงานใหม่" ด้านบนเพื่อเพิ่มข้อมูลผลงาน</p>
+            </div>
+          `;
+          return;
+        }
+
+        items.forEach(item => {
+          const tags = Array.isArray(item.tags) ? item.tags : [];
+          const card = document.createElement('article');
+          card.className = 'admin-card';
+          card.innerHTML = `
+            <div class="card-body">
+              <div class="card-meta-row">
+                <span class="cat-badge">${item.category || 'Projects'}</span>
+                <span class="publish-badge ${item.published ? 'published' : 'draft'}">
+                  ${item.published ? '● Published' : '○ Draft'}
+                </span>
+              </div>
+              <h3 class="card-title">${item.title || 'Untitled Project'}</h3>
+              <p class="card-desc">${item.description || 'ไม่มีคำอธิบาย'}</p>
+              ${item.award ? `<div style="font-size: 0.8rem; font-weight: 600; color: #b45309; margin-bottom: 10px;">🏆 ${item.award}</div>` : ''}
+              <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px;">
+                ${tags.map(t => `<span style="font-family: var(--font-mono); font-size: 0.7rem; background: var(--bg-neutral); padding: 2px 6px; border: 1px solid var(--border-black); border-radius: 4px;">#${t}</span>`).join('')}
+              </div>
+              <div class="card-footer">
+                <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-faint);">
+                  #${item.sort_order || 1}
+                </span>
+                <div class="card-actions-group">
+                  ${item.link_url ? `<a href="${item.link_url}" target="_blank" class="btn btn-sm">ลิงก์</a>` : ''}
+                  <button class="btn btn-sm edit-proj-btn" data-id="${item.id}" type="button">แก้ไข</button>
+                  <button class="btn btn-sm btn-danger delete-proj-btn" data-id="${item.id}" type="button">ลบ</button>
+                </div>
+              </div>
+            </div>
+          `;
+
+          card.querySelector('.edit-proj-btn').addEventListener('click', () => openProjectEdit(item));
+          card.querySelector('.delete-proj-btn').addEventListener('click', () => deleteProject(item.id, item.title));
+          projectsListGrid.appendChild(card);
+        });
+        refreshCursorHover();
+      }
+
+      // =====================================================================
+      // 7. SEARCH FILTERS
+      // =====================================================================
+      document.getElementById('videoSearchInput').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const filtered = allVideosData.filter(v =>
+          (v.title && v.title.toLowerCase().includes(q)) ||
+          (v.category && v.category.toLowerCase().includes(q)) ||
+          (v.series_label && v.series_label.toLowerCase().includes(q)) ||
+          (v.description && v.description.toLowerCase().includes(q))
+        );
+        renderVideos(filtered);
+      });
+
+      document.getElementById('islamSearchInput').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const filtered = allIslamData.filter(i =>
+          (i.caption && i.caption.toLowerCase().includes(q)) ||
+          (i.category && i.category.toLowerCase().includes(q))
+        );
+        renderIslam(filtered);
+      });
+
+      document.getElementById('projectSearchInput').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const filtered = allProjectsData.filter(p =>
+          (p.title && p.title.toLowerCase().includes(q)) ||
+          (p.category && p.category.toLowerCase().includes(q)) ||
+          (p.description && p.description.toLowerCase().includes(q)) ||
+          (Array.isArray(p.tags) && p.tags.some(t => t.toLowerCase().includes(q)))
+        );
+        renderProjects(filtered);
+      });
+
+      // 6.4 ANONYMOUS MESSAGES
+      async function loadMessages() {
+        try {
+          const { data, error } = await supabase
+            .from('anonymous_messages')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (error) throw error;
+          allMessagesData = Array.isArray(data) ? data : [];
+          messageCountBadge.textContent = allMessagesData.length;
+          renderMessages(allMessagesData);
+        } catch (err) {
+          console.warn('[Messages load warning, checking local storage fallback]', err);
+          try {
+            const local = JSON.parse(localStorage.getItem('local_anon_messages') || '[]');
+            allMessagesData = Array.isArray(local) ? local : [];
+            messageCountBadge.textContent = allMessagesData.length;
+            renderMessages(allMessagesData);
+          } catch (e) {
+            allMessagesData = [];
+            messageCountBadge.textContent = '0';
+            renderMessages([]);
+          }
+        }
+      }
+
+      function renderMessages(items) {
+        messagesListGrid.innerHTML = '';
+        if (!items || items.length === 0) {
+          messagesListGrid.innerHTML = `
+            <div class="admin-empty-state" style="grid-column: 1 / -1;">
+              <span style="font-size: 2.2rem; display: block; margin-bottom: 10px;">💌</span>
+              <h3>ยังไม่มีข้อความนิรนามเข้ามา</h3>
+              <p>เมื่อมีผู้เยี่ยมชมส่งข้อความผ่านปุ่ม "anonymas to me" ข้อความจะมาปรากฏที่นี่ทันที</p>
+            </div>
+          `;
+          return;
+        }
+
+        items.forEach(item => {
+          const card = document.createElement('article');
+          card.className = 'msg-card';
+
+          let timeFormatted = '';
+          if (item.created_at) {
+            try {
+              const d = new Date(item.created_at);
+              timeFormatted = d.toLocaleString('th-TH', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              });
+            } catch (e) {
+              timeFormatted = item.created_at;
+            }
+          }
+
+          card.innerHTML = `
+            <div class="msg-header">
+              <span class="msg-tag-badge">${escapeHtml(item.sender_tag || '💭 ทั่วไป')}</span>
+              <span class="msg-time">🕒 ${escapeHtml(timeFormatted)}</span>
+            </div>
+            <div class="msg-content">${escapeHtml(item.message || '')}</div>
+            <div class="msg-footer">
+              <button class="btn btn-sm copy-msg-btn" type="button" title="คัดลอกข้อความ">
+                <span>📋 คัดลอก</span>
+              </button>
+              <button class="btn btn-sm btn-danger delete-msg-btn" data-id="${item.id}" type="button" title="ลบข้อความนี้">
+                <span>🗑️ ลบ</span>
+              </button>
+            </div>
+          `;
+
+          card.querySelector('.copy-msg-btn').addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(item.message || '');
+              showToast('คัดลอกข้อความแล้ว 📋');
+            } catch (err) {
+              showToast('ไม่สามารถคัดลอกได้', 'error');
+            }
+          });
+
+          card.querySelector('.delete-msg-btn').addEventListener('click', () => deleteMessage(item.id));
+
+          messagesListGrid.appendChild(card);
+        });
+        refreshCursorHover();
+      }
+
+      async function deleteMessage(id) {
+        if (!confirm('ต้องการลบข้อความนี้ใช่หรือไม่?')) return;
+        try {
+          // Delete from Supabase
+          const { error } = await supabase.from('anonymous_messages').delete().eq('id', id);
+          if (error) {
+            console.warn('[Supabase delete error, attempting local storage cleanup]', error);
+          }
+          // Also cleanup local storage fallback if present
+          try {
+            const local = JSON.parse(localStorage.getItem('local_anon_messages') || '[]');
+            const updated = local.filter(m => m.id !== id);
+            localStorage.setItem('local_anon_messages', JSON.stringify(updated));
+          } catch (e) { }
+
+          showToast('ลบข้อความเรียบร้อยแล้ว');
+          await loadMessages();
+        } catch (err) {
+          console.error('[Delete Message Error]', err);
+          showToast('ลบไม่สำเร็จ: ' + err.message, 'error');
+        }
+      }
+
+      // Filter messages on search input
+      document.getElementById('messageSearchInput').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase().trim();
+        const filtered = allMessagesData.filter(m =>
+          (m.message && m.message.toLowerCase().includes(q)) ||
+          (m.sender_tag && m.sender_tag.toLowerCase().includes(q))
+        );
+        renderMessages(filtered);
+      });
+
+      // Refresh button
+      document.getElementById('refreshMessagesBtn').addEventListener('click', async () => {
+        showToast('กำลังรีเฟรชข้อความ...');
+        await loadMessages();
+      });
+
+      // =====================================================================
+      // 8. MODAL CONTROLS & FORMS
+      // =====================================================================
+      function openModal(id) {
+        const m = document.getElementById(id);
+        if (m) {
+          m.classList.add('active');
+          refreshCursorHover();
+        }
+      }
+
+      function closeModal(id) {
+        const m = document.getElementById(id);
+        if (m) m.classList.remove('active');
+      }
+
+      document.querySelectorAll('[data-close-modal]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-close-modal');
+          closeModal(target);
+        });
+      });
+
+      // Close modal on outside click
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('active');
+        });
+      });
+
+      // 8.1 VIDEO FORM
+      const videoModal = document.getElementById('videoModal');
+      const videoForm = document.getElementById('videoForm');
+      const addVideoBtn = document.getElementById('addVideoBtn');
+
+      addVideoBtn.addEventListener('click', () => {
+        document.getElementById('videoModalTitle').textContent = 'เพิ่มวิดีโอใหม่';
+        document.getElementById('videoFormId').value = '';
+        videoForm.reset();
+        document.getElementById('vPublished').checked = true;
+        document.getElementById('vSort').value = allVideosData.length + 1;
+        openModal('videoModal');
+      });
+
+      function openVideoEdit(item) {
+        document.getElementById('videoModalTitle').textContent = 'แก้ไขวิดีโอ';
+        document.getElementById('videoFormId').value = item.id;
+        document.getElementById('vTitle').value = item.title || '';
+        const catVal = (item.category || '').toLowerCase().trim() === 'calculus' ? 'Calculus' : 'Computer';
+        document.getElementById('vCategory').value = catVal;
+        document.getElementById('vSeriesLabel').value = item.series_label || '';
+        document.getElementById('vUrl').value = item.video_url || '';
+        document.getElementById('vDuration').value = item.duration || '';
+        document.getElementById('vDesc').value = item.description || '';
+        document.getElementById('vSort').value = item.sort_order || 1;
+        document.getElementById('vPublished').checked = item.published !== false;
+        openModal('videoModal');
+      }
+
+      videoForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('videoFormId').value.trim();
+        const title = document.getElementById('vTitle').value.trim();
+        const category = document.getElementById('vCategory').value.trim();
+        const series_label = document.getElementById('vSeriesLabel').value.trim() || null;
+        const video_url = document.getElementById('vUrl').value.trim();
+        const duration = document.getElementById('vDuration').value.trim() || null;
+        const description = document.getElementById('vDesc').value.trim() || null;
+        const sort_order = parseInt(document.getElementById('vSort').value, 10) || 1;
+        const published = document.getElementById('vPublished').checked;
+
+        const payload = {
+          title,
+          category,
+          series_label,
+          video_url,
+          duration,
+          description,
+          sort_order,
+          published
+        };
+
+        const submitBtn = document.getElementById('videoSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'กำลังบันทึก...';
+
+        try {
+          if (id) {
+            // Update
+            const { error } = await supabase.from('videos').update(payload).eq('id', id);
+            if (error) throw error;
+            showToast('อัปเดตวิดีโอเรียบร้อยแล้ว');
+          } else {
+            // Insert (generate slug id)
+            payload.id = 'video-' + Date.now();
+            const { error } = await supabase.from('videos').insert(payload);
+            if (error) throw error;
+            showToast('เพิ่มวิดีโอใหม่สำเร็จแล้ว');
+          }
+          closeModal('videoModal');
+          await loadVideos();
+        } catch (err) {
+          console.error('[Save Video Error]', err);
+          showToast('บันทึกไม่สำเร็จ: ' + err.message, 'error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'บันทึกข้อมูล';
+        }
+      });
+
+      async function deleteVideo(id, title) {
+        if (!confirm(`ต้องการลบคลิป "${title || id}" ใช่หรือไม่?`)) return;
+        try {
+          const { error } = await supabase.from('videos').delete().eq('id', id);
+          if (error) throw error;
+          showToast('ลบคลิปเรียบร้อยแล้ว');
+          await loadVideos();
+        } catch (err) {
+          console.error('[Delete Video Error]', err);
+          showToast('ลบไม่สำเร็จ: ' + err.message, 'error');
+        }
+      }
+
+      // 8.2 ISLAM THREAD FORM & STORAGE UPLOADER
+      const islamForm = document.getElementById('islamForm');
+      const addIslamBtn = document.getElementById('addIslamBtn');
+      const islamUploadZone = document.getElementById('islamUploadZone');
+      const islamFileInput = document.getElementById('islamFileInput');
+      const islamUploadedChips = document.getElementById('islamUploadedChips');
+
+      addIslamBtn.addEventListener('click', () => {
+        document.getElementById('islamModalTitle').textContent = 'เพิ่มเธรดใหม่';
+        document.getElementById('islamFormId').value = '';
+        islamForm.reset();
+        document.getElementById('iPublished').checked = true;
+        currentIslamImages = [];
+        renderIslamImagesChips();
+        openModal('islamModal');
+      });
+
+      function openIslamEdit(item) {
+        document.getElementById('islamModalTitle').textContent = 'แก้ไขเธรด';
+        document.getElementById('islamFormId').value = item.id;
+        document.getElementById('iCategory').value = item.category || '@';
+        document.getElementById('iCaption').value = item.caption || '';
+        document.getElementById('iPublished').checked = item.published !== false;
+        currentIslamImages = Array.isArray(item.images) ? [...item.images] : [];
+        renderIslamImagesChips();
+        openModal('islamModal');
+      }
+
+      islamUploadZone.addEventListener('click', () => islamFileInput.click());
+      islamFileInput.addEventListener('change', async (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length === 0) return;
+
+        showToast('กำลังอัปโหลดรูปภาพขึ้น Cloud Storage...');
+        for (const file of files) {
+          try {
+            const ext = file.name.split('.').pop();
+            const filePath = `islam/${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${ext}`;
+            const { data, error } = await supabase.storage.from(BUCKET_NAME).upload(filePath, file, {
+              cacheControl: '3600',
+              upsert: true
+            });
+            if (error) throw error;
+            currentIslamImages.push(filePath);
+          } catch (err) {
+            console.error('[Image Upload Error]', err);
+            showToast('อัปโหลดรูปไม่สำเร็จ: ' + err.message, 'error');
+          }
+        }
+        renderIslamImagesChips();
+        showToast('อัปโหลดรูปภาพเรียบร้อย');
+        islamFileInput.value = '';
+      });
+
+      function renderIslamImagesChips() {
+        islamUploadedChips.innerHTML = '';
+        currentIslamImages.forEach((imgKey, idx) => {
+          const url = window.SupabaseApp ? window.SupabaseApp.getStorageImageUrl(imgKey) : imgKey;
+          const chip = document.createElement('div');
+          chip.className = 'image-chip-item';
+          chip.innerHTML = `
+            <img src="${url}" alt="Slide ${idx + 1}">
+            <button type="button" class="image-chip-remove" title="Remove image">✕</button>
+          `;
+          chip.querySelector('.image-chip-remove').addEventListener('click', () => {
+            currentIslamImages.splice(idx, 1);
+            renderIslamImagesChips();
+          });
+          islamUploadedChips.appendChild(chip);
+        });
+      }
+
+      islamForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('islamFormId').value.trim();
+        const category = document.getElementById('iCategory').value.trim() || '@';
+        const caption = document.getElementById('iCaption').value.trim();
+        const published = document.getElementById('iPublished').checked;
+
+        const payload = {
+          category,
+          caption: caption || '',
+          images: currentIslamImages,
+          published
+        };
+
+        const submitBtn = document.getElementById('islamSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'กำลังบันทึก...';
+
+        try {
+          if (id) {
+            const { error } = await supabase.from('islam_posts').update(payload).eq('id', id);
+            if (error) throw error;
+            showToast('อัปเดตเธรดเรียบร้อยแล้ว');
+          } else {
+            payload.id = 'post-' + Date.now();
+            const { error } = await supabase.from('islam_posts').insert(payload);
+            if (error) throw error;
+            showToast('เพิ่มเธรดใหม่สำเร็จแล้ว');
+          }
+          closeModal('islamModal');
+          await loadIslamPosts();
+        } catch (err) {
+          console.error('[Save Islam Error]', err);
+          showToast('บันทึกไม่สำเร็จ: ' + err.message, 'error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'บันทึกเธรด';
+        }
+      });
+
+      async function deleteIslamPost(id) {
+        if (!confirm('ต้องการลบเธรดนี้ใช่หรือไม่?')) return;
+        try {
+          const { error } = await supabase.from('islam_posts').delete().eq('id', id);
+          if (error) throw error;
+          showToast('ลบเธรดเรียบร้อยแล้ว');
+          await loadIslamPosts();
+        } catch (err) {
+          console.error('[Delete Islam Error]', err);
+          showToast('ลบไม่สำเร็จ: ' + err.message, 'error');
+        }
+      }
+
+      // 8.3 PROJECT FORM STATE & CONTROLS
+      const projectForm = document.getElementById('projectForm');
+      const addProjectBtn = document.getElementById('addProjectBtn');
+      const pSlug = document.getElementById('pSlug');
+      const pSlugHelp = document.getElementById('pSlugHelp');
+      const pTechContainer = document.getElementById('pTechContainer');
+      const pTechChips = document.getElementById('pTechChips');
+      const pTechInput = document.getElementById('pTechInput');
+      const pAwardsListWrap = document.getElementById('pAwardsListWrap');
+      const addAwardBtn = document.getElementById('addAwardBtn');
+      const projectMediaUploadZone = document.getElementById('projectMediaUploadZone');
+      const projectMediaFileInput = document.getElementById('projectMediaFileInput');
+      const pYoutubeInput = document.getElementById('pYoutubeInput');
+      const addYoutubeBtn = document.getElementById('addYoutubeBtn');
+      const pMediaListWrap = document.getElementById('pMediaListWrap');
+      const previewProjectBtn = document.getElementById('previewProjectBtn');
+
+      let currentProjectTech = [];
+      let currentProjectAwards = [];
+      let currentProjectMedia = [];
+
+      // Helper: Extract YouTube ID
+      function getYouTubeId(url) {
+        if (!url || typeof url !== 'string') return null;
+        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+        return match ? match[1] : null;
+      }
+
+      // Helper: Client-side WebP image resize (max ~1080px)
+      function resizeImageToWebP(file, maxDimension = 1080, quality = 0.85) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+              let width = img.width;
+              let height = img.height;
+              if (width > maxDimension || height > maxDimension) {
+                if (width > height) {
+                  height = Math.round((height * maxDimension) / width);
+                  width = maxDimension;
+                } else {
+                  width = Math.round((width * maxDimension) / height);
+                  height = maxDimension;
+                }
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = width;
+              canvas.height = height;
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, width, height);
+              canvas.toBlob((blob) => {
+                if (blob) {
+                  resolve({
+                    blob,
+                    originalSize: file.size,
+                    resizedSize: blob.size,
+                    width,
+                    height
+                  });
+                } else {
+                  reject(new Error('WebP conversion failed'));
+                }
+              }, 'image/webp', quality);
+            };
+            img.onerror = () => reject(new Error('Failed to load image for resize'));
+            img.src = e.target.result;
+          };
+          reader.onerror = () => reject(new Error('Failed to read file'));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // Render Tech Chips
+      function renderProjectTechChips() {
+        pTechChips.innerHTML = '';
+        currentProjectTech.forEach((tech, idx) => {
+          const chip = document.createElement('span');
+          chip.className = 'tech-chip-item';
+          const txt = document.createElement('span');
+          txt.textContent = tech;
+          const removeBtn = document.createElement('button');
+          removeBtn.type = 'button';
+          removeBtn.className = 'tech-chip-remove';
+          removeBtn.textContent = '✕';
+          removeBtn.title = 'ลบแท็กนี้';
+          removeBtn.addEventListener('click', () => {
+            currentProjectTech.splice(idx, 1);
+            renderProjectTechChips();
+          });
+          chip.appendChild(txt);
+          chip.appendChild(removeBtn);
+          pTechChips.appendChild(chip);
+        });
+      }
+
+      pTechInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ',') {
+          e.preventDefault();
+          const val = pTechInput.value.replace(/,/g, '').trim();
+          if (val && !currentProjectTech.includes(val)) {
+            currentProjectTech.push(val);
+            renderProjectTechChips();
+          }
+          pTechInput.value = '';
+        }
+      });
+
+      // Render Awards Repeater
+      function renderProjectAwards() {
+        pAwardsListWrap.innerHTML = '';
+        if (currentProjectAwards.length === 0) {
+          pAwardsListWrap.innerHTML = '<div style="font-size: 0.85rem; color: var(--text-muted); padding: 8px;">ยังไม่มีรางวัล กดปุ่ม "+ เพิ่มรางวัล" ด้านบน</div>';
+          return;
+        }
+
+        const levels = ['International', 'National', 'Regional', 'Provincial', 'Area', 'Participation'];
+
+        currentProjectAwards.forEach((award, idx) => {
+          const row = document.createElement('div');
+          row.className = 'award-editor-row';
+
+          // Level select
+          const levelSelect = document.createElement('select');
+          levelSelect.className = 'form-select award-editor-level';
+          levels.forEach(lvl => {
+            const opt = document.createElement('option');
+            opt.value = lvl;
+            opt.textContent = lvl;
+            if (String(award.level || '').toLowerCase() === lvl.toLowerCase()) {
+              opt.selected = true;
+            }
+            levelSelect.appendChild(opt);
+          });
+          levelSelect.addEventListener('change', (e) => {
+            currentProjectAwards[idx].level = e.target.value;
+          });
+
+          // Title input
+          const titleInput = document.createElement('input');
+          titleInput.type = 'text';
+          titleInput.className = 'form-input award-editor-title';
+          titleInput.placeholder = 'ชื่อรางวัล (เช่น เหรียญทอง)';
+          titleInput.value = award.title || '';
+          titleInput.addEventListener('input', (e) => {
+            currentProjectAwards[idx].title = e.target.value;
+          });
+
+          // Detail input
+          const detailInput = document.createElement('input');
+          detailInput.type = 'text';
+          detailInput.className = 'form-input award-editor-detail';
+          detailInput.placeholder = 'รายละเอียด (เช่น I New Gen Award 2025 จัดโดย วช.)';
+          detailInput.value = award.detail || '';
+          detailInput.addEventListener('input', (e) => {
+            currentProjectAwards[idx].detail = e.target.value;
+          });
+
+          // Action buttons: Up, Down, Remove
+          const actionsWrap = document.createElement('div');
+          actionsWrap.style.display = 'flex';
+          actionsWrap.style.gap = '4px';
+
+          const upBtn = document.createElement('button');
+          upBtn.type = 'button';
+          upBtn.className = 'award-btn-action';
+          upBtn.textContent = '↑';
+          upBtn.title = 'เลื่อนขึ้น';
+          upBtn.disabled = idx === 0;
+          upBtn.addEventListener('click', () => {
+            if (idx > 0) {
+              const temp = currentProjectAwards[idx];
+              currentProjectAwards[idx] = currentProjectAwards[idx - 1];
+              currentProjectAwards[idx - 1] = temp;
+              renderProjectAwards();
+            }
+          });
+
+          const downBtn = document.createElement('button');
+          downBtn.type = 'button';
+          downBtn.className = 'award-btn-action';
+          downBtn.textContent = '↓';
+          downBtn.title = 'เลื่อนลง';
+          downBtn.disabled = idx === currentProjectAwards.length - 1;
+          downBtn.addEventListener('click', () => {
+            if (idx < currentProjectAwards.length - 1) {
+              const temp = currentProjectAwards[idx];
+              currentProjectAwards[idx] = currentProjectAwards[idx + 1];
+              currentProjectAwards[idx + 1] = temp;
+              renderProjectAwards();
+            }
+          });
+
+          const removeBtn = document.createElement('button');
+          removeBtn.type = 'button';
+          removeBtn.className = 'award-btn-action';
+          removeBtn.textContent = '✕';
+          removeBtn.title = 'ลบรางวัลนี้';
+          removeBtn.style.color = 'var(--accent-red)';
+          removeBtn.addEventListener('click', () => {
+            currentProjectAwards.splice(idx, 1);
+            renderProjectAwards();
+          });
+
+          actionsWrap.appendChild(upBtn);
+          actionsWrap.appendChild(downBtn);
+          actionsWrap.appendChild(removeBtn);
+
+          row.appendChild(levelSelect);
+          row.appendChild(titleInput);
+          row.appendChild(detailInput);
+          row.appendChild(actionsWrap);
+          pAwardsListWrap.appendChild(row);
+        });
+      }
+
+      addAwardBtn.addEventListener('click', () => {
+        currentProjectAwards.push({
+          level: 'National',
+          title: '',
+          detail: ''
+        });
+        renderProjectAwards();
+      });
+
+      // Render Media List
+      function renderProjectMediaList() {
+        pMediaListWrap.innerHTML = '';
+        if (currentProjectMedia.length === 0) {
+          pMediaListWrap.innerHTML = '<div style="font-size: 0.85rem; color: var(--text-muted); padding: 8px;">ยังไม่มีรูปหรือวิดีโอ เลือกรูปภาพหรือวางลิงก์ YouTube ด้านบน</div>';
+          return;
+        }
+
+        currentProjectMedia.forEach((item, idx) => {
+          const row = document.createElement('div');
+          row.className = 'media-editor-item';
+
+          // Thumbnail
+          const thumb = document.createElement('img');
+          thumb.className = 'media-editor-thumb';
+          if (item.type === 'youtube') {
+            const ytId = getYouTubeId(item.url || item.path);
+            thumb.src = ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '';
+            thumb.alt = 'YouTube';
+          } else {
+            const imgSrc = window.SupabaseApp ? window.SupabaseApp.getStorageImageUrl(item.path || item.url) : (item.path || item.url);
+            thumb.src = imgSrc;
+            thumb.alt = 'Media';
+          }
+
+          // Info & Caption
+          const info = document.createElement('div');
+          info.className = 'media-editor-info';
+
+          const typeLabel = document.createElement('div');
+          typeLabel.className = 'media-editor-type';
+          typeLabel.textContent = item.type === 'youtube' ? '▶ YOUTUBE VIDEO' : '📷 WEBP IMAGE';
+
+          const captionInput = document.createElement('input');
+          captionInput.type = 'text';
+          captionInput.className = 'media-editor-caption';
+          captionInput.placeholder = 'คำอธิบายรูปภาพ/วิดีโอ (จะมีหรือไม่มีก็ได้)';
+          captionInput.value = item.caption || '';
+          captionInput.addEventListener('input', (e) => {
+            currentProjectMedia[idx].caption = e.target.value;
+          });
+
+          info.appendChild(typeLabel);
+          info.appendChild(captionInput);
+
+          // Action buttons: Up, Down, Remove
+          const actionsWrap = document.createElement('div');
+          actionsWrap.style.display = 'flex';
+          actionsWrap.style.gap = '4px';
+
+          const upBtn = document.createElement('button');
+          upBtn.type = 'button';
+          upBtn.className = 'award-btn-action';
+          upBtn.textContent = '↑';
+          upBtn.title = 'เลื่อนขึ้น';
+          upBtn.disabled = idx === 0;
+          upBtn.addEventListener('click', () => {
+            if (idx > 0) {
+              const temp = currentProjectMedia[idx];
+              currentProjectMedia[idx] = currentProjectMedia[idx - 1];
+              currentProjectMedia[idx - 1] = temp;
+              renderProjectMediaList();
+            }
+          });
+
+          const downBtn = document.createElement('button');
+          downBtn.type = 'button';
+          downBtn.className = 'award-btn-action';
+          downBtn.textContent = '↓';
+          downBtn.title = 'เลื่อนลง';
+          downBtn.disabled = idx === currentProjectMedia.length - 1;
+          downBtn.addEventListener('click', () => {
+            if (idx < currentProjectMedia.length - 1) {
+              const temp = currentProjectMedia[idx];
+              currentProjectMedia[idx] = currentProjectMedia[idx + 1];
+              currentProjectMedia[idx + 1] = temp;
+              renderProjectMediaList();
+            }
+          });
+
+          const removeBtn = document.createElement('button');
+          removeBtn.type = 'button';
+          removeBtn.className = 'award-btn-action';
+          removeBtn.textContent = '✕';
+          removeBtn.title = 'ลบรายการนี้';
+          removeBtn.style.color = 'var(--accent-red)';
+          removeBtn.addEventListener('click', () => {
+            currentProjectMedia.splice(idx, 1);
+            renderProjectMediaList();
+          });
+
+          actionsWrap.appendChild(upBtn);
+          actionsWrap.appendChild(downBtn);
+          actionsWrap.appendChild(removeBtn);
+
+          row.appendChild(thumb);
+          row.appendChild(info);
+          row.appendChild(actionsWrap);
+          pMediaListWrap.appendChild(row);
+        });
+      }
+
+      // YouTube Add button
+      addYoutubeBtn.addEventListener('click', () => {
+        const val = pYoutubeInput.value.trim();
+        const ytId = getYouTubeId(val);
+        if (!ytId || !/^https?:\/\//i.test(val)) {
+          showToast('กรุณากรอกลิงก์ YouTube ที่ถูกต้อง (เช่น https://www.youtube.com/watch?v=...)', 'error');
+          return;
+        }
+        currentProjectMedia.push({
+          type: 'youtube',
+          url: val,
+          caption: ''
+        });
+        pYoutubeInput.value = '';
+        renderProjectMediaList();
+        showToast('เพิ่มวิดีโอ YouTube แล้ว');
+      });
+
+      // Media File Upload with WebP resize
+      projectMediaUploadZone.addEventListener('click', () => projectMediaFileInput.click());
+      projectMediaFileInput.addEventListener('change', async (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length === 0) return;
+
+        showToast('กำลังประมวลผลและย่อรูปภาพเป็น WebP...');
+        for (const file of files) {
+          try {
+            const { blob, originalSize, resizedSize } = await resizeImageToWebP(file, 1080, 0.85);
+            const origKB = (originalSize / 1024).toFixed(0);
+            const webpKB = (resizedSize / 1024).toFixed(0);
+
+            const filePath = `projects/${Date.now()}-${Math.random().toString(36).substring(2, 8)}.webp`;
+            const { data, error } = await supabase.storage.from(BUCKET_NAME).upload(filePath, blob, {
+              contentType: 'image/webp',
+              cacheControl: '3600',
+              upsert: true
+            });
+            if (error) throw error;
+
+            currentProjectMedia.push({
+              type: 'image',
+              path: filePath,
+              caption: ''
+            });
+
+            showToast(`ย่อรูปสำเร็จ: ${origKB} KB → ${webpKB} KB (WebP)`);
+          } catch (err) {
+            console.error('[Project Media Upload Error]', err);
+            showToast('อัปโหลดรูปไม่สำเร็จ: ' + err.message, 'error');
+          }
+        }
+        renderProjectMediaList();
+        projectMediaFileInput.value = '';
+      });
+
+      // Open Add Project Modal
+      addProjectBtn.addEventListener('click', () => {
+        document.getElementById('projectModalTitle').textContent = 'เพิ่มผลงานใหม่';
+        document.getElementById('projectFormId').value = '';
+        projectForm.reset();
+
+        pSlug.value = '';
+        pSlug.readOnly = false;
+        pSlug.style.backgroundColor = '#ffffff';
+        pSlug.style.cursor = 'text';
+        pSlugHelp.textContent = 'กรอก slug ภาษาอังกฤษ เช่น d-kebun หรือปล่อยว่างเพื่อสร้างอัตโนมัติ';
+
+        document.getElementById('pPublished').checked = true;
+        document.getElementById('pSort').value = allProjectsData.length + 1;
+        document.getElementById('pProblem').value = '';
+        document.getElementById('pMyRole').value = '';
+
+        currentProjectTech = [];
+        renderProjectTechChips();
+
+        currentProjectAwards = [];
+        renderProjectAwards();
+
+        currentProjectMedia = [];
+        renderProjectMediaList();
+
+        previewProjectBtn.style.display = 'none';
+
+        openModal('projectModal');
+      });
+
+      // Open Edit Project Modal
+      function openProjectEdit(item) {
+        document.getElementById('projectModalTitle').textContent = 'แก้ไขผลงาน';
+        document.getElementById('projectFormId').value = item.id;
+
+        pSlug.value = item.id;
+        pSlug.readOnly = true;
+        pSlug.style.backgroundColor = '#f4f4f5';
+        pSlug.style.cursor = 'not-allowed';
+        pSlugHelp.textContent = 'รหัส Slug ถูกล็อคเพื่อรักษาความถูกต้องของ URL และรายการโปรด';
+
+        document.getElementById('pTitle').value = item.title || '';
+        document.getElementById('pCategory').value = item.category || 'Projects';
+        document.getElementById('pAward').value = item.award || '';
+        document.getElementById('pTags').value = Array.isArray(item.tags) ? item.tags.join(', ') : '';
+        document.getElementById('pDesc').value = item.description || '';
+        document.getElementById('pLink').value = item.link_url || '';
+        document.getElementById('pSort').value = item.sort_order || 1;
+        document.getElementById('pPublished').checked = item.published !== false;
+
+        document.getElementById('pProblem').value = item.problem || '';
+        document.getElementById('pMyRole').value = item.my_role || '';
+
+        currentProjectTech = Array.isArray(item.tech) ? [...item.tech] : [];
+        renderProjectTechChips();
+
+        currentProjectAwards = Array.isArray(item.awards) ? JSON.parse(JSON.stringify(item.awards)) : [];
+        renderProjectAwards();
+
+        currentProjectMedia = Array.isArray(item.media) ? JSON.parse(JSON.stringify(item.media)) : [];
+        renderProjectMediaList();
+
+        previewProjectBtn.style.display = 'inline-flex';
+        previewProjectBtn.onclick = () => window.open('../project.html?id=' + encodeURIComponent(item.id), '_blank');
+
+        openModal('projectModal');
+      }
+
+      // Save Project Form Submit Handler
+      projectForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('projectFormId').value.trim();
+        const title = document.getElementById('pTitle').value.trim();
+        const category = document.getElementById('pCategory').value.trim();
+        const award = document.getElementById('pAward').value.trim() || null;
+        const tagsRaw = document.getElementById('pTags').value.trim();
+        const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+        const description = document.getElementById('pDesc').value.trim() || null;
+        const link_url = document.getElementById('pLink').value.trim() || null;
+        const sort_order = parseInt(document.getElementById('pSort').value, 10) || 1;
+        const published = document.getElementById('pPublished').checked;
+
+        const problem = document.getElementById('pProblem').value.trim() || null;
+        const my_role = document.getElementById('pMyRole').value.trim() || null;
+
+        const awards = currentProjectAwards.filter(a => a && (a.title || a.detail));
+        const media = currentProjectMedia;
+
+        const payload = {
+          title,
+          category,
+          award,
+          tags,
+          description,
+          link_url,
+          sort_order,
+          published,
+          problem,
+          my_role,
+          tech: currentProjectTech,
+          awards,
+          media
+        };
+
+        const submitBtn = document.getElementById('projectSubmitBtn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'กำลังบันทึก...';
+
+        try {
+          if (id) {
+            const { error } = await supabase.from('projects').update(payload).eq('id', id);
+            if (error) throw error;
+            showToast('อัปเดตผลงานเรียบร้อยแล้ว');
+          } else {
+            let slug = pSlug.value.trim().toLowerCase().replace(/[^a-z0-9_-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+            if (!slug) {
+              slug = title.toLowerCase().replace(/[^a-z0-9_-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') || ('project-' + Date.now());
+            }
+            payload.id = slug;
+            const { error } = await supabase.from('projects').insert(payload);
+            if (error) throw error;
+            showToast('เพิ่มผลงานใหม่สำเร็จแล้ว');
+          }
+          closeModal('projectModal');
+          await loadProjects();
+        } catch (err) {
+          console.error('[Save Project Error]', err);
+          showToast('บันทึกไม่สำเร็จ: ' + err.message, 'error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'บันทึกผลงาน';
+        }
+      });
+
+      async function deleteProject(id, title) {
+        if (!confirm(`ต้องการลบผลงาน "${title || id}" ใช่หรือไม่?`)) return;
+        try {
+          const { error } = await supabase.from('projects').delete().eq('id', id);
+          if (error) throw error;
+          showToast('ลบผลงานเรียบร้อยแล้ว');
+          await loadProjects();
+        } catch (err) {
+          console.error('[Delete Project Error]', err);
+          showToast('ลบไม่สำเร็จ: ' + err.message, 'error');
+        }
+      }
+
+      // Initial check
+      checkSession();
+      refreshCursorHover();
+
+    })();
+  </script>
+</body>
+
+</html>

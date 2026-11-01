@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details | Portfolio</title>
+  <meta name="description" content="Detailed overview of projects, engineering solutions, awards, and media showcase." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Project Details | Portfolio" />
+  <meta property="og:description" content="Detailed overview of projects, engineering solutions, awards, and media showcase." />
+  <meta property="og:image" content="image/real_handsome_boy.PNG" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Project Details | Portfolio" />
+  <meta name="twitter:description" content="Detailed overview of projects, engineering solutions, awards, and media showcase." />
+  <meta name="twitter:image" content="image/real_handsome_boy.PNG" />
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* ===================================================================
+       1. THEME VARIABLES & RESET
+       =================================================================== */
+    :root {
+      --bg-white: #ffffff;
+      --bg-paper: #ffffff;
+      --bg-neutral: #f5f5f7;
+      --text-black: #0a0a0a;
+      --text-muted: #555555;
+      --text-faint: #888888;
+      --border-black: #0a0a0a;
+      --grid-color: rgba(0, 0, 0, 0.07);
+      --grid-size: 26px;
+
+      --accent-highlighter: #fef08a;
+      --accent-blue: #3b82f6;
+
+      --shadow-offset: 4px 4px 0px #0a0a0a;
+      --shadow-offset-lg: 7px 7px 0px #0a0a0a;
+      --shadow-offset-hover: 6px 6px 0px #0a0a0a;
+
+      --font-display: 'Space Grotesk', 'IBM Plex Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', 'IBM Plex Sans Thai', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Space Mono', 'IBM Plex Sans Thai', monospace;
+
+      --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-spring: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-white);
+      color: var(--text-black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Hide native browser cursor on fine pointer desktop */
+    @media (hover: hover) and (pointer: fine) {
+      *,
+      *::before,
+      *::after,
+      html,
+      body {
+        cursor: none !important;
+      }
+    }
+
+    /* ===================================================================
+       2. CUSTOM MOUSE CURSOR
+       =================================================================== */
+    .cursor-dot,
+    .cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999999;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease, transform 0.15s ease-out;
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-dot,
+      .cursor-ring {
+        display: block;
+      }
+    }
+
+    .cursor-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--text-black);
+    }
+
+    .cursor-ring {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid var(--text-black);
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    body.cursor-hover .cursor-ring {
+      width: 52px;
+      height: 52px;
+      background-color: rgba(0, 0, 0, 0.08);
+      border-width: 2px;
+    }
+
+    body.cursor-hover .cursor-dot {
+      opacity: 0.6;
+    }
+
+    /* ===================================================================
+       3. BASE & LAYOUT
+       =================================================================== */
+    body {
+      background-color: var(--bg-white);
+      color: var(--text-black);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Graph paper grid background */
+    .graph-paper-bg {
+      background-color: var(--bg-paper);
+      background-image:
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      flex: 1;
+      padding: 40px 20px 80px 20px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Navigation top bar */
+    .top-nav {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-black);
+      background: #ffffff;
+      border: 2px solid var(--border-black);
+      border-radius: 8px;
+      padding: 8px 16px;
+      text-decoration: none;
+      box-shadow: var(--shadow-offset);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+      outline: none;
+    }
+
+    .back-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-offset-hover);
+      background-color: #fafafa;
+    }
+
+    .back-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--border-black);
+    }
+
+    .back-btn:focus-visible {
+      outline: 2px solid var(--border-black);
+      outline-offset: 4px;
+    }
+
+    /* ===================================================================
+       4. PROJECT DETAIL CARD
+       =================================================================== */
+    .project-detail-card {
+      background: #ffffff;
+      border: 2.5px solid var(--border-black);
+      border-radius: 12px;
+      box-shadow: var(--shadow-offset-lg);
+      padding: 44px 36px;
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    /* Scotch tape sticker */
+    .project-detail-card::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      width: 110px;
+      height: 28px;
+      background: rgba(220, 220, 220, 0.75);
+      border: 1px dashed rgba(0, 0, 0, 0.4);
+      transform: translateX(-50%) rotate(-1.5deg);
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* HEADER */
+    .project-header {
+      margin-bottom: 28px;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+      padding-bottom: 24px;
+    }
+
+    .header-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .category-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border: 1.5px solid var(--border-black);
+      border-radius: 6px;
+      background: #f4f4f5;
+      display: inline-block;
+    }
+
+    .project-external-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-black);
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1.5px solid var(--border-black);
+      border-radius: 6px;
+      background: #ffffff;
+      box-shadow: 2px 2px 0px var(--border-black);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .project-external-link:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--border-black);
+      background: #fafafa;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.18;
+      color: var(--text-black);
+      margin-bottom: 14px;
+      word-break: break-word;
+    }
+
+    .project-description {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+
+    /* Tag chips */
+    .tag-chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-chip {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 12px;
+      border: 1.5px solid var(--border-black);
+      border-radius: 999px;
+      background: #fafafa;
+      color: var(--text-black);
+      box-shadow: 1.5px 1.5px 0px var(--border-black);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .tag-chip:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 2.5px 2.5px 0px var(--border-black);
+    }
+
+    /* SECTION GENERAL */
+    .detail-section {
+      margin-top: 36px;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--text-black);
+      border-bottom: 2px solid var(--border-black);
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .prose-content {
+      font-size: 1.04rem;
+      line-height: 1.85;
+      color: #222222;
+    }
+
+    .prose-content p {
+      margin-bottom: 16px;
+    }
+
+    .prose-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* TECH CHIPS */
+    .tech-chips-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-black);
+      border-radius: 8px;
+      box-shadow: 2px 2px 0px var(--border-black);
+      color: var(--text-black);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .tech-chip:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--border-black);
+    }
+
+    /* AWARDS LIST (Calm & Compact, Distinct Level Styles) */
+    .awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .award-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-black);
+      border-radius: 8px;
+      padding: 12px 16px;
+      box-shadow: 2.5px 2.5px 0px var(--border-black);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      position: relative;
+    }
+
+    .award-row:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3.5px 3.5px 0px var(--border-black);
+    }
+
+    /* International Row: Subtle iridescent rainbow glow & violet accent */
+    .award-row.level-international {
+      background: linear-gradient(to right, rgba(254, 205, 211, 0.45), rgba(199, 210, 254, 0.45), #ffffff 65%);
+      border-left: 4px solid #9333ea;
+    }
+
+    /* National Row: Warm gold glow & gold accent */
+    .award-row.level-national {
+      background: linear-gradient(to right, rgba(254, 240, 138, 0.35), #ffffff 60%);
+      border-left: 4px solid #eab308;
+    }
+
+    /* Regional Row: Mint / Emerald */
+    .award-row.level-regional {
+      background: linear-gradient(to right, rgba(220, 252, 231, 0.35), #ffffff 60%);
+      border-left: 4px solid #16a34a;
+    }
+
+    /* Provincial Row: Sky Blue */
+    .award-row.level-provincial {
+      background: linear-gradient(to right, rgba(224, 242, 254, 0.35), #ffffff 60%);
+      border-left: 4px solid #0284c7;
+    }
+
+    /* Area Row: Warm Coral */
+    .award-row.level-area {
+      background: linear-gradient(to right, rgba(255, 237, 213, 0.35), #ffffff 60%);
+      border-left: 4px solid #ea580c;
+    }
+
+    /* Participation Row: Cool Slate */
+    .award-row.level-participation {
+      background: linear-gradient(to right, rgba(241, 245, 249, 0.5), #ffffff 60%);
+      border-left: 4px solid #64748b;
+    }
+
+    /* Level Badges */
+    .award-level-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border: 1.5px solid var(--border-black);
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 1px 1px 0px var(--border-black);
+    }
+
+    /* 1. International: Shimmering Rainbow Gradient */
+    .award-level-badge.badge-international {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #a1c4fd 60%, #c2e9fb 100%);
+      background-size: 200% 200%;
+      animation: rainbowGlow 5s ease infinite;
+      color: #1e1b4b;
+      border: 1.5px solid #0a0a0a;
+    }
+
+    @keyframes rainbowGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* 2. National: Rich Gold Gradient */
+    .award-level-badge.badge-national {
+      background: linear-gradient(135deg, #fef08a 0%, #facc15 50%, #eab308 100%);
+      color: #713f12;
+      border: 1.5px solid #0a0a0a;
+    }
+
+    /* 3. Regional: Mint / Emerald */
+    .award-level-badge.badge-regional {
+      background: linear-gradient(135deg, #dcfce7 0%, #86efac 100%);
+      color: #14532d;
+      border: 1.5px solid #0a0a0a;
+    }
+
+    /* 4. Provincial: Sky Blue */
+    .award-level-badge.badge-provincial {
+      background: linear-gradient(135deg, #e0f2fe 0%, #7dd3fc 100%);
+      color: #0c4a6e;
+      border: 1.5px solid #0a0a0a;
+    }
+
+    /* 5. Area: Warm Coral */
+    .award-level-badge.badge-area {
+      background: linear-gradient(135deg, #ffedd5 0%, #fdba74 100%);
+      color: #7c2d12;
+      border: 1.5px solid #0a0a0a;
+    }
+
+    /* 6. Participation: Clean Slate */
+    .award-level-badge.badge-participation {
+      background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+      color: #334155;
+      border: 1.5px solid #0a0a0a;
+    }
+
+    /* Award SVG Icons */
+    .award-icon {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .award-row-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .award-row-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+
+    .award-row-detail {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* GALLERY (Images + YouTube items) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .gallery-item {
+      border: 2px solid var(--border-black);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: var(--shadow-offset);
+      position: relative;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-item:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-offset-hover);
+    }
+
+    .gallery-thumb-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      position: relative;
+      overflow: hidden;
+      background: #111111;
+      cursor: pointer;
+    }
+
+    .gallery-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-thumb-img {
+      transform: scale(1.03);
+    }
+
+    /* YouTube item specific styles */
+    .gallery-item-youtube .gallery-thumb-wrap {
+      text-decoration: none;
+    }
+
+    .youtube-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(10, 10, 10, 0.85);
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .youtube-play-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+      margin-left: 2px;
+    }
+
+    .gallery-item:hover .youtube-play-btn {
+      transform: translate(-50%, -50%) scale(1.1);
+      background: #ff0000;
+    }
+
+    .youtube-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(10, 10, 10, 0.8);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .gallery-caption {
+      padding: 10px 14px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      background: #fafafa;
+      border-top: 1.5px solid rgba(0, 0, 0, 0.08);
+      line-height: 1.45;
+    }
+
+    /* ===================================================================
+       5. BOTTOM NAVIGATION (Previous & Next by sort_order)
+       =================================================================== */
+    .bottom-nav {
+      margin-top: 24px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-project-btn {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      background: #ffffff;
+      border: 1.5px solid var(--border-black);
+      border-radius: 8px;
+      padding: 8px 16px;
+      text-decoration: none;
+      color: var(--text-black);
+      box-shadow: 2.5px 2.5px 0px var(--border-black);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+      outline: none;
+      min-width: 150px;
+      max-width: 320px;
+    }
+
+    .nav-project-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3.5px 3.5px 0px var(--border-black);
+      background-color: #fafafa;
+    }
+
+    .nav-project-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1.5px 1.5px 0px var(--border-black);
+    }
+
+    .nav-project-btn:focus-visible {
+      outline: 2px solid var(--border-black);
+      outline-offset: 3px;
+    }
+
+    .nav-project-btn.disabled {
+      opacity: 0.45;
+      pointer-events: none;
+      box-shadow: none;
+      background: #f5f5f5;
+    }
+
+    .nav-project-btn.nav-next {
+      margin-left: auto;
+      text-align: right;
+      align-items: flex-end;
+    }
+
+    .nav-direction-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-project-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-black);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    /* ===================================================================
+       6. ERROR STATE ("ไม่พบผลงานนี้")
+       =================================================================== */
+    .error-card {
+      background: #ffffff;
+      border: 2.5px solid var(--border-black);
+      border-radius: 12px;
+      box-shadow: var(--shadow-offset-lg);
+      padding: 60px 32px;
+      text-align: center;
+      position: relative;
+      margin-top: 24px;
+    }
+
+    .error-card::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      width: 110px;
+      height: 28px;
+      background: rgba(220, 220, 220, 0.75);
+      border: 1px dashed rgba(0, 0, 0, 0.4);
+      transform: translateX(-50%) rotate(-1.5deg);
+      pointer-events: none;
+    }
+
+    .error-badge {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      display: inline-block;
+      padding: 4px 12px;
+      background: #fef08a;
+      border: 2px solid var(--border-black);
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .error-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text-black);
+    }
+
+    .error-text {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    /* ===================================================================
+       7. LOADING SKELETONS
+       =================================================================== */
+    .skeleton-box {
+      background: #e5e5e5;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skeleton-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      animation: skeletonShimmer 1.4s infinite;
+    }
+
+    @keyframes skeletonShimmer {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .skeleton-box::after {
+        animation: none;
+      }
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ===================================================================
+       8. SCROLL FADE-IN
+       =================================================================== */
+    .fade-in-element {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+      will-change: opacity, transform;
+    }
+
+    .fade-in-element.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===================================================================
+       9. LIGHTBOX (Modal viewer matching Islam page)
+       =================================================================== */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-card {
+      background: #ffffff;
+      border: 2.5px solid var(--border-black);
+      border-radius: 12px;
+      box-shadow: 8px 8px 0px var(--border-black);
+      width: min(94vw, 760px);
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-overlay.active .lightbox-card {
+      transform: scale(1);
+    }
+
+    .lightbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 2px solid var(--border-black);
+      background: #ffffff;
+    }
+
+    .lightbox-title-text {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+
+    .lightbox-close-btn {
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--border-black);
+      border-radius: 6px;
+      background: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--border-black);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      outline: none;
+    }
+
+    .lightbox-close-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--border-black);
+      background: #f4f4f5;
+    }
+
+    .lightbox-media-area {
+      position: relative;
+      background: #000000;
+      width: 100%;
+      height: 480px;
+      max-height: 55vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .lightbox-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: #000000;
+    }
+
+    .lightbox-slide img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      user-select: none;
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--border-black);
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--border-black);
+      z-index: 10;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      outline: none;
+    }
+
+    .lightbox-nav-btn:hover {
+      transform: translateY(-50%) scale(1.06);
+      box-shadow: 4px 4px 0px var(--border-black);
+    }
+
+    .lightbox-nav-btn.prev {
+      left: 14px;
+    }
+
+    .lightbox-nav-btn.next {
+      right: 14px;
+    }
+
+    .lightbox-nav-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .lightbox-slide-indicator {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+    }
+
+    .lightbox-footer {
+      padding: 16px 20px;
+      background: #ffffff;
+      border-top: 2px solid var(--border-black);
+    }
+
+    .lightbox-caption {
+      font-size: 0.92rem;
+      color: var(--text-black);
+      line-height: 1.55;
+    }
+
+    /* ===================================================================
+       10. RESPONSIVE DESIGN
+       ================================================================== */
+    @media (max-width: 640px) {
+      .project-detail-card {
+        padding: 32px 20px;
+      }
+
+      .bottom-nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-project-btn {
+        max-width: 100%;
+      }
+
+      .nav-project-btn.nav-next {
+        text-align: left;
+        align-items: flex-start;
+      }
+
+      .award-row {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .lightbox-media-area {
+        height: 320px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Custom Mouse Cursor Elements -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <div class="graph-paper-bg">
+    <div class="container">
+      <!-- TOP NAVIGATION -->
+      <nav class="top-nav">
+        <a href="index.html#showcase" class="back-btn" id="backToShowcaseBtn">
+          ← Back to Showcase
+        </a>
+      </nav>
+
+      <!-- SKELETON CONTAINER (Shown while loading) -->
+      <div id="skeletonContainer" class="project-detail-card">
+        <div class="header-top-row">
+          <div class="skeleton-box" style="width: 90px; height: 26px;"></div>
+        </div>
+        <div class="skeleton-box" style="width: 75%; height: 46px; margin: 16px 0 14px;"></div>
+        <div class="skeleton-box" style="width: 100%; height: 24px; margin-bottom: 20px;"></div>
+        <div style="display: flex; gap: 8px; margin-bottom: 30px;">
+          <div class="skeleton-box" style="width: 70px; height: 24px; border-radius: 999px;"></div>
+          <div class="skeleton-box" style="width: 85px; height: 24px; border-radius: 999px;"></div>
+          <div class="skeleton-box" style="width: 60px; height: 24px; border-radius: 999px;"></div>
+        </div>
+        <div class="skeleton-box" style="width: 160px; height: 22px; margin-bottom: 14px;"></div>
+        <div class="skeleton-box" style="width: 100%; height: 70px; margin-bottom: 28px;"></div>
+        <div class="skeleton-box" style="width: 160px; height: 22px; margin-bottom: 14px;"></div>
+        <div class="skeleton-box" style="width: 100%; height: 90px;"></div>
+      </div>
+
+      <!-- MAIN PROJECT CONTAINER (Populated dynamically) -->
+      <div id="projectContent" style="display: none;">
+        <article class="project-detail-card fade-in-element" id="mainCard">
+          <!-- HEADER -->
+          <header class="project-header">
+            <div class="header-top-row">
+              <span class="category-badge" id="pCategory">Projects</span>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="project-external-link" id="pExternalLink" style="display: none;">
+                <span>Visit Project</span>
+                <span>↗</span>
+              </a>
+            </div>
+            <h1 class="project-title" id="pTitle">Project Title</h1>
+            <p class="project-description" id="pDescription"></p>
+            <div class="tag-chips-container" id="pTags"></div>
+          </header>
+
+          <!-- BACKGROUND (from problem) -->
+          <section class="detail-section fade-in-element" id="sectionBackground" style="display: none;">
+            <h2 class="section-label">// BACKGROUND</h2>
+            <div class="prose-content" id="pProblem"></div>
+          </section>
+
+          <!-- DETAILS (from my_role) -->
+          <section class="detail-section fade-in-element" id="sectionWhatIDid" style="display: none;">
+            <h2 class="section-label">// DETAILS</h2>
+            <div class="prose-content" id="pMyRole"></div>
+          </section>
+
+          <!-- AWARDS (from awards) -->
+          <section class="detail-section fade-in-element" id="sectionAwards" style="display: none;">
+            <h2 class="section-label">// AWARDS</h2>
+            <div class="awards-list" id="pAwardsList"></div>
+          </section>
+
+          <!-- GALLERY (from media) -->
+          <section class="detail-section fade-in-element" id="sectionGallery" style="display: none;">
+            <h2 class="section-label">// GALLERY</h2>
+            <div class="gallery-grid" id="pGalleryGrid"></div>
+          </section>
+        </article>
+
+        <!-- BOTTOM NAVIGATION (Previous & Next following sort_order) -->
+        <nav class="bottom-nav fade-in-element" aria-label="Project Navigation">
+          <a href="#" class="nav-project-btn nav-prev" id="prevProjectBtn">
+            <span class="nav-direction-label">← Previous</span>
+            <span class="nav-project-title" id="prevProjectTitle">-</span>
+          </a>
+          <a href="#" class="nav-project-btn nav-next" id="nextProjectBtn">
+            <span class="nav-direction-label">Next →</span>
+            <span class="nav-project-title" id="nextProjectTitle">-</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- NOT FOUND STATE -->
+      <div id="notFoundState" class="error-card fade-in-element" style="display: none;">
+        <span class="error-badge">[404] NOT FOUND</span>
+        <h1 class="error-title">ไม่พบผลงานนี้</h1>
+        <p class="error-text">
+          ขออภัย ไม่พบข้อมูลผลงานที่ท่านต้องการ หรือผลงานนี้ยังไม่ได้รับการเผยแพร่
+        </p>
+        <a href="index.html#showcase" class="back-btn">
+          ← กลับสู่หน้า Showcase
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL (Image viewer matching Islam page) -->
+  <div class="lightbox-overlay" id="lightboxModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image Lightbox Viewer">
+    <div class="lightbox-card" id="lightboxCard">
+      <div class="lightbox-header">
+        <span class="lightbox-title-text" id="lightboxTitle">Gallery Viewer</span>
+        <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close viewer">✕</button>
+      </div>
+
+      <div class="lightbox-media-area" id="lightboxMediaArea">
+        <div class="lightbox-slider-track" id="lightboxSliderTrack"></div>
+
+        <button class="lightbox-nav-btn prev" id="lightboxPrevBtn" aria-label="Previous slide" style="display: none;">
+          <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="lightbox-nav-btn next" id="lightboxNextBtn" aria-label="Next slide" style="display: none;">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+
+        <div class="lightbox-slide-indicator" id="lightboxSlideIndicator" style="display: none;">1/1</div>
+      </div>
+
+      <div class="lightbox-footer" id="lightboxFooter">
+        <p class="lightbox-caption" id="lightboxCaption"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPABASE PUBLIC CLIENT CONFIGURATION & REST HELPER -->
+  <script src="config.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* -----------------------------------------------------------------
+         CUSTOM MOUSE CURSOR
+         ----------------------------------------------------------------- */
+      const cursorDot = document.getElementById('cursorDot');
+      const cursorRing = document.getElementById('cursorRing');
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let ringX = mouseX;
+      let ringY = mouseY;
+      let isHovering = false;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (cursorDot) {
+          cursorDot.style.left = `${mouseX}px`;
+          cursorDot.style.top = `${mouseY}px`;
+        }
+      });
+
+      function renderCursor() {
+        ringX += (mouseX - ringX) * 0.16;
+        ringY += (mouseY - ringY) * 0.16;
+        if (cursorRing) {
+          cursorRing.style.left = `${ringX}px`;
+          cursorRing.style.top = `${ringY}px`;
+        }
+        requestAnimationFrame(renderCursor);
+      }
+      requestAnimationFrame(renderCursor);
+
+      function updateCursorHoverListeners() {
+        const hoverTargets = document.querySelectorAll('a, button, input, textarea, select, .gallery-thumb-wrap, .award-row');
+        hoverTargets.forEach((el) => {
+          if (el.dataset.cursorBound) return;
+          el.dataset.cursorBound = 'true';
+          el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+          el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+      }
+
+      /* -----------------------------------------------------------------
+         SCROLL FADE-IN OBSERVER
+         ----------------------------------------------------------------- */
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function setupScrollFadeIn() {
+        if (prefersReducedMotion) {
+          document.querySelectorAll('.fade-in-element').forEach(el => el.classList.add('is-visible'));
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-element').forEach(el => observer.observe(el));
+      }
+
+      /* -----------------------------------------------------------------
+         HELPERS & FORMATTERS
+         ----------------------------------------------------------------- */
+      // Render text into paragraphs safely using textContent; blank line starts new paragraph
+      function renderParagraphs(container, rawText) {
+        container.innerHTML = '';
+        if (!rawText || typeof rawText !== 'string' || !rawText.trim()) return;
+
+        const chunks = rawText.split(/\n\s*\n/);
+        chunks.forEach((chunk) => {
+          const trimmed = chunk.trim();
+          if (!trimmed) return;
+          const p = document.createElement('p');
+          const lines = trimmed.split('\n');
+          lines.forEach((line, idx) => {
+            if (idx > 0) p.appendChild(document.createElement('br'));
+            p.appendChild(document.createTextNode(line));
+          });
+          container.appendChild(p);
+        });
+      }
+
+      // Extract YouTube Video ID
+      function getYouTubeId(url) {
+        if (!url || typeof url !== 'string') return null;
+        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+        return match ? match[1] : null;
+      }
+
+      // Award level sort priority
+      const LEVEL_ORDER = {
+        'international': 1,
+        'national': 2,
+        'regional': 3,
+        'provincial': 4,
+        'area': 5,
+        'participation': 6
+      };
+
+      // Pastel color palettes for tags and tech chips
+      const PASTEL_PALETTES = [
+        { bg: '#fef3c7', text: '#78350f' }, // pastel butter/yellow
+        { bg: '#dcfce7', text: '#14532d' }, // pastel mint/green
+        { bg: '#e0f2fe', text: '#0369a1' }, // pastel sky/blue
+        { bg: '#ede9fe', text: '#5b21b6' }, // pastel lavender/purple
+        { bg: '#ffe4e6', text: '#9f1239' }, // pastel rose/pink
+        { bg: '#ffedd5', text: '#9a3412' }, // pastel peach/orange
+        { bg: '#ccfbf1', text: '#115e59' }, // pastel teal
+        { bg: '#fce7f3', text: '#831843' }  // pastel blossom
+      ];
+
+      function getPastelColor(str) {
+        if (!str || typeof str !== 'string') return PASTEL_PALETTES[0];
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const idx = Math.abs(hash) % PASTEL_PALETTES.length;
+        return PASTEL_PALETTES[idx];
+      }
+
+      // Clean SVG icons for awards (No emojis!)
+      const AWARD_ICONS = {
+        international: '<svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
+        national: '<svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h10c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-2c-.55 0-1-.45-1-1v-2.34"></path><path d="M18 4H6v7a6 6 0 0 0 12 0V4z"></path></svg>',
+        regional: '<svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+        provincial: '<svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+        area: '<svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>',
+        participation: '<svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>'
+      };
+
+      /* -----------------------------------------------------------------
+         LIGHTBOX STATE & CONTROLS
+         ----------------------------------------------------------------- */
+      const lightboxModal = document.getElementById('lightboxModal');
+      const lightboxCard = document.getElementById('lightboxCard');
+      const lightboxSliderTrack = document.getElementById('lightboxSliderTrack');
+      const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+      const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+      const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+      const lightboxSlideIndicator = document.getElementById('lightboxSlideIndicator');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxFooter = document.getElementById('lightboxFooter');
+      const lightboxTitle = document.getElementById('lightboxTitle');
+
+      let galleryImages = []; // List of { src, caption }
+      let currentSlideIndex = 0;
+      let prevFocusedElement = null;
+
+      function openLightbox(index) {
+        if (!galleryImages || galleryImages.length === 0) return;
+        currentSlideIndex = Math.max(0, Math.min(index, galleryImages.length - 1));
+        prevFocusedElement = document.activeElement;
+
+        // Build slides
+        lightboxSliderTrack.innerHTML = '';
+        galleryImages.forEach((imgItem) => {
+          const slide = document.createElement('div');
+          slide.className = 'lightbox-slide';
+          const img = document.createElement('img');
+          img.src = imgItem.src;
+          img.alt = imgItem.caption || 'Project Showcase Image';
+          slide.appendChild(img);
+          lightboxSliderTrack.appendChild(slide);
+        });
+
+        updateLightboxSlide(false);
+
+        lightboxModal.classList.add('active');
+        lightboxModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        lightboxCloseBtn.focus();
+      }
+
+      function closeLightbox() {
+        lightboxModal.classList.remove('active');
+        lightboxModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (prevFocusedElement && typeof prevFocusedElement.focus === 'function') {
+          prevFocusedElement.focus();
+        }
+      }
+
+      function updateLightboxSlide(animate = true) {
+        const total = galleryImages.length;
+        if (total === 0) return;
+
+        if (currentSlideIndex >= total) currentSlideIndex = 0;
+        if (currentSlideIndex < 0) currentSlideIndex = total - 1;
+
+        if (!animate || prefersReducedMotion) {
+          lightboxSliderTrack.style.transition = 'none';
+        } else {
+          lightboxSliderTrack.style.transition = 'transform 0.35s cubic-bezier(0.2, 0, 0, 1)';
+        }
+        lightboxSliderTrack.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+
+        const curItem = galleryImages[currentSlideIndex];
+        if (curItem && curItem.caption && curItem.caption.trim()) {
+          lightboxCaption.textContent = curItem.caption.trim();
+          lightboxFooter.style.display = 'block';
+        } else {
+          lightboxCaption.textContent = '';
+          lightboxFooter.style.display = 'none';
+        }
+
+        if (total > 1) {
+          lightboxSlideIndicator.style.display = 'block';
+          lightboxSlideIndicator.textContent = `${currentSlideIndex + 1}/${total}`;
+          lightboxPrevBtn.style.display = currentSlideIndex > 0 ? 'flex' : 'none';
+          lightboxNextBtn.style.display = currentSlideIndex < total - 1 ? 'flex' : 'none';
+        } else {
+          lightboxSlideIndicator.style.display = 'none';
+          lightboxPrevBtn.style.display = 'none';
+          lightboxNextBtn.style.display = 'none';
+        }
+      }
+
+      lightboxPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentSlideIndex > 0) {
+          currentSlideIndex--;
+          updateLightboxSlide(true);
+        }
+      });
+
+      lightboxNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentSlideIndex < galleryImages.length - 1) {
+          currentSlideIndex++;
+          updateLightboxSlide(true);
+        }
+      });
+
+      lightboxCloseBtn.addEventListener('click', closeLightbox);
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal) closeLightbox();
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (!lightboxModal.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft' && currentSlideIndex > 0) {
+          currentSlideIndex--;
+          updateLightboxSlide(true);
+        }
+        if (e.key === 'ArrowRight' && currentSlideIndex < galleryImages.length - 1) {
+          currentSlideIndex++;
+          updateLightboxSlide(true);
+        }
+      });
+
+      /* -----------------------------------------------------------------
+         RENDER PROJECT DETAILS
+         ----------------------------------------------------------------- */
+      function renderProject(project, allProjects) {
+        // Dynamic title
+        document.title = `${project.title || 'Project'} | Portfolio`;
+
+        // Category
+        const pCategory = document.getElementById('pCategory');
+        pCategory.textContent = project.category || 'Project';
+
+        // Title
+        const pTitle = document.getElementById('pTitle');
+        pTitle.textContent = project.title || '';
+
+        // One-line Description
+        const pDesc = document.getElementById('pDescription');
+        if (project.description && project.description.trim()) {
+          pDesc.textContent = project.description.trim();
+          pDesc.style.display = 'block';
+        } else {
+          pDesc.style.display = 'none';
+        }
+
+        // Tags (Pastel Colors - uses tags or tech)
+        const pTags = document.getElementById('pTags');
+        pTags.innerHTML = '';
+        const tags = (Array.isArray(project.tags) && project.tags.length > 0)
+          ? project.tags
+          : (Array.isArray(project.tech) ? project.tech : []);
+        if (tags.length > 0) {
+          tags.forEach(t => {
+            if (!t || !t.trim()) return;
+            const chip = document.createElement('span');
+            chip.className = 'tag-chip';
+            chip.textContent = t.trim();
+            const pastel = getPastelColor(t.trim());
+            chip.style.backgroundColor = pastel.bg;
+            chip.style.color = pastel.text;
+            pTags.appendChild(chip);
+          });
+          pTags.style.display = 'flex';
+        } else {
+          pTags.style.display = 'none';
+        }
+
+        // External Link (e.g. GitHub / Demo)
+        const pLink = document.getElementById('pExternalLink');
+        if (project.link_url && project.link_url.trim()) {
+          pLink.href = project.link_url.trim();
+          pLink.style.display = 'inline-flex';
+        } else {
+          pLink.style.display = 'none';
+        }
+
+        // 1. BACKGROUND (from problem)
+        const secBackground = document.getElementById('sectionBackground');
+        const pProblem = document.getElementById('pProblem');
+        if (project.problem && typeof project.problem === 'string' && project.problem.trim()) {
+          renderParagraphs(pProblem, project.problem);
+          secBackground.style.display = 'block';
+        } else {
+          secBackground.style.display = 'none';
+        }
+
+        // 2. WHAT I DID (from my_role)
+        const secWhatIDid = document.getElementById('sectionWhatIDid');
+        const pMyRole = document.getElementById('pMyRole');
+        if (project.my_role && typeof project.my_role === 'string' && project.my_role.trim()) {
+          renderParagraphs(pMyRole, project.my_role);
+          secWhatIDid.style.display = 'block';
+        } else {
+          secWhatIDid.style.display = 'none';
+        }
+
+        // 3. AWARDS (from awards jsonb)
+        // One row per award: small bordered level label, award title, smaller gray detail text.
+        // Sorted by level: International, National, Regional, Provincial, Area, Participation.
+        // International = Shimmering Rainbow Gradient; National = Gold Gradient; No emojis, clean SVG icons!
+        const secAwards = document.getElementById('sectionAwards');
+        const pAwardsList = document.getElementById('pAwardsList');
+        pAwardsList.innerHTML = '';
+
+        let awardsArray = Array.isArray(project.awards) ? [...project.awards] : [];
+        if (awardsArray.length > 0) {
+          awardsArray.sort((a, b) => {
+            const orderA = LEVEL_ORDER[String(a.level || '').toLowerCase().trim()] || 99;
+            const orderB = LEVEL_ORDER[String(b.level || '').toLowerCase().trim()] || 99;
+            return orderA - orderB;
+          });
+
+          awardsArray.forEach(award => {
+            if (!award || (!award.title && !award.detail)) return;
+            const levelKey = String(award.level || '').toLowerCase().trim();
+            const row = document.createElement('div');
+            row.className = `award-row level-${levelKey}`;
+
+            const badge = document.createElement('span');
+            badge.className = `award-level-badge badge-${levelKey}`;
+
+            // Add SVG Icon (NOT emoji!)
+            const iconSvg = AWARD_ICONS[levelKey] || AWARD_ICONS.participation;
+            badge.innerHTML = `${iconSvg}<span>${award.level || 'Award'}</span>`;
+            row.appendChild(badge);
+
+            const contentWrap = document.createElement('div');
+            contentWrap.className = 'award-row-content';
+
+            if (award.title) {
+              const titleEl = document.createElement('span');
+              titleEl.className = 'award-row-title';
+              titleEl.textContent = award.title;
+              contentWrap.appendChild(titleEl);
+            }
+
+            if (award.detail) {
+              const detailEl = document.createElement('span');
+              detailEl.className = 'award-row-detail';
+              detailEl.textContent = award.detail;
+              contentWrap.appendChild(detailEl);
+            }
+
+            row.appendChild(contentWrap);
+            pAwardsList.appendChild(row);
+          });
+
+          secAwards.style.display = pAwardsList.children.length > 0 ? 'block' : 'none';
+        } else {
+          secAwards.style.display = 'none';
+        }
+
+        // 5. GALLERY (from media jsonb)
+        const secGallery = document.getElementById('sectionGallery');
+        const pGalleryGrid = document.getElementById('pGalleryGrid');
+        pGalleryGrid.innerHTML = '';
+        galleryImages = [];
+
+        const mediaList = Array.isArray(project.media) ? project.media : [];
+        let imageSlideIndex = 0;
+
+        mediaList.forEach(item => {
+          if (!item || typeof item !== 'object') return;
+          const type = (item.type || '').toLowerCase();
+          const targetUrl = item.url || item.path;
+          if (!targetUrl) return;
+
+          if (type === 'youtube') {
+            const videoId = getYouTubeId(targetUrl);
+            const thumbUrl = videoId
+              ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+              : 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200" fill="%23111"><rect width="320" height="200"/></svg>';
+
+            const card = document.createElement('div');
+            card.className = 'gallery-item gallery-item-youtube';
+
+            const link = document.createElement('a');
+            link.className = 'gallery-thumb-wrap';
+            link.href = targetUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.setAttribute('aria-label', `Watch ${item.caption || project.title} on YouTube (opens in new tab)`);
+
+            const img = document.createElement('img');
+            img.className = 'gallery-thumb-img';
+            img.src = thumbUrl;
+            img.alt = item.caption || 'YouTube Video Thumbnail';
+            img.loading = 'lazy';
+
+            const playBtn = document.createElement('div');
+            playBtn.className = 'youtube-play-btn';
+            playBtn.innerHTML = '<svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>';
+
+            const badge = document.createElement('span');
+            badge.className = 'youtube-badge';
+            badge.textContent = 'YouTube ↗';
+
+            link.appendChild(img);
+            link.appendChild(playBtn);
+            link.appendChild(badge);
+            card.appendChild(link);
+
+            if (item.caption && item.caption.trim()) {
+              const cap = document.createElement('div');
+              cap.className = 'gallery-caption';
+              cap.textContent = item.caption.trim();
+              card.appendChild(cap);
+            }
+
+            pGalleryGrid.appendChild(card);
+
+          } else {
+            // Type === 'image'
+            const fullSrc = window.SupabaseApp ? window.SupabaseApp.getStorageImageUrl(targetUrl) : targetUrl;
+            const currentImgIdx = imageSlideIndex;
+            galleryImages.push({
+              src: fullSrc,
+              caption: item.caption || ''
+            });
+            imageSlideIndex++;
+
+            const card = document.createElement('div');
+            card.className = 'gallery-item';
+
+            const wrap = document.createElement('div');
+            wrap.className = 'gallery-thumb-wrap';
+            wrap.setAttribute('role', 'button');
+            wrap.setAttribute('tabindex', '0');
+            wrap.setAttribute('aria-label', `View image: ${item.caption || project.title}`);
+
+            const img = document.createElement('img');
+            img.className = 'gallery-thumb-img';
+            img.src = fullSrc;
+            img.alt = item.caption || 'Project Showcase Image';
+            img.loading = 'lazy';
+
+            wrap.appendChild(img);
+            wrap.addEventListener('click', () => openLightbox(currentImgIdx));
+            wrap.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(currentImgIdx);
+              }
+            });
+
+            card.appendChild(wrap);
+
+            if (item.caption && item.caption.trim()) {
+              const cap = document.createElement('div');
+              cap.className = 'gallery-caption';
+              cap.textContent = item.caption.trim();
+              card.appendChild(cap);
+            }
+
+            pGalleryGrid.appendChild(card);
+          }
+        });
+
+        secGallery.style.display = pGalleryGrid.children.length > 0 ? 'block' : 'none';
+
+        // 6. BOTTOM NAVIGATION (Previous & Next following sort_order)
+        const sortedProjects = [...allProjects].sort((a, b) => (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0));
+        const currentIndex = sortedProjects.findIndex(p => p.id === project.id);
+
+        const prevBtn = document.getElementById('prevProjectBtn');
+        const prevTitle = document.getElementById('prevProjectTitle');
+        const nextBtn = document.getElementById('nextProjectBtn');
+        const nextTitle = document.getElementById('nextProjectTitle');
+
+        if (currentIndex > 0) {
+          const prevProj = sortedProjects[currentIndex - 1];
+          prevBtn.href = `project.html?id=${encodeURIComponent(prevProj.id)}`;
+          prevTitle.textContent = prevProj.title || 'Previous';
+          prevBtn.style.display = 'inline-flex';
+        } else {
+          prevBtn.style.display = 'none';
+        }
+
+        if (currentIndex !== -1 && currentIndex < sortedProjects.length - 1) {
+          const nextProj = sortedProjects[currentIndex + 1];
+          nextBtn.href = `project.html?id=${encodeURIComponent(nextProj.id)}`;
+          nextTitle.textContent = nextProj.title || 'Next';
+          nextBtn.style.display = 'inline-flex';
+        } else {
+          nextBtn.style.display = 'none';
+        }
+
+        const bottomNav = document.querySelector('.bottom-nav');
+        if (bottomNav) {
+          bottomNav.style.display = (currentIndex > 0 || (currentIndex !== -1 && currentIndex < sortedProjects.length - 1)) ? 'flex' : 'none';
+        }
+
+        // Reveal content and hide skeletons
+        document.getElementById('skeletonContainer').style.display = 'none';
+        document.getElementById('projectContent').style.display = 'block';
+
+        updateCursorHoverListeners();
+        setupScrollFadeIn();
+      }
+
+      function showNotFound() {
+        document.title = 'ไม่พบผลงานนี้ | Portfolio';
+        document.getElementById('skeletonContainer').style.display = 'none';
+        document.getElementById('projectContent').style.display = 'none';
+        const notFound = document.getElementById('notFoundState');
+        notFound.style.display = 'block';
+        setTimeout(() => notFound.classList.add('is-visible'), 50);
+        updateCursorHoverListeners();
+      }
+
+      /* -----------------------------------------------------------------
+         INIT & DATA FETCHING
+         ----------------------------------------------------------------- */
+      async function init() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = (urlParams.get('id') || '').trim();
+
+        if (!projectId) {
+          showNotFound();
+          return;
+        }
+
+        // 1. Try instant localStorage cache
+        const cacheKey = 'supabase_cache_projects_detail';
+        const cached = window.SupabaseApp ? window.SupabaseApp.getCache(cacheKey) : null;
+        let foundProject = null;
+
+        if (cached && Array.isArray(cached) && cached.length > 0) {
+          foundProject = cached.find(p => p.id === projectId && p.published !== false);
+          if (foundProject) {
+            renderProject(foundProject, cached);
+          }
+        }
+
+        // 2. Fetch live data with fallback to backup.json
+        try {
+          if (!window.SupabaseApp || typeof window.SupabaseApp.loadTableData !== 'function') {
+            throw new Error('SupabaseApp library not loaded');
+          }
+
+          const result = await window.SupabaseApp.loadTableData(
+            'projects',
+            'select=*&published=eq.true&order=sort_order.asc,created_at.desc',
+            cacheKey
+          );
+
+          const list = Array.isArray(result.data) ? result.data : [];
+          const validProjects = list.filter(p => p && p.id && p.published !== false);
+          validProjects.sort((a, b) => (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0));
+
+          const match = validProjects.find(p => p.id === projectId);
+          if (match) {
+            renderProject(match, validProjects);
+          } else {
+            showNotFound();
+          }
+        } catch (err) {
+          console.warn('[Project Detail] Error loading project data:', err.message);
+          if (!foundProject) {
+            showNotFound();
+          }
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</body>
+
+</html>

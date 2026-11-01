@@ -1,0 +1,12 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+.tempmediaStorage/
+.user_uploaded/
+
+# Local env (if any)
+.env
+.env.local
