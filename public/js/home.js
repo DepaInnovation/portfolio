@@ -1,7 +1,6 @@
 // Client-side interactions for Home Page
 (function() {
   function initHome() {
-  <script>
     (function () {
       'use strict';
 
@@ -1472,7 +1471,6 @@
       }
 
     })();
-  </script>
 
   }
 

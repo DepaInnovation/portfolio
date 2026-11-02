@@ -1,6 +1,5 @@
 
-  <!-- JAVASCRIPT LOGIC -->
-  <script>
+  
     (function () {
       // =====================================================================
       // DATA-DRIVEN VIDEOS LOADER (Supabase REST / Cache / Backup fallback)
@@ -533,5 +532,3 @@
       }
 
     })();
-  </script>
-</body>

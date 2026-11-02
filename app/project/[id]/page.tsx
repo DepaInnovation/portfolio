@@ -8,3 +8,4 @@ export default async function ProjectIdPage({
   const { id } = await params;
   redirect(`/project?id=${encodeURIComponent(id)}`);
 }
+

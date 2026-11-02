@@ -44,3 +44,4 @@ export interface AnonymousMessagePayload {
   message: string;
   sender_tag?: string;
 }
+
