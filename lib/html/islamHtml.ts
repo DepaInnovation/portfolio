@@ -22,7 +22,7 @@ export const islamHtml = `
         <li><a href="/#skills" class="nav-link">Skills</a></li>
         <li><a href="/#projects" class="nav-link">Projects</a></li>
         <li><a href="/video" class="nav-link">Videos</a></li>
-        <li><a href="/islam" class="nav-link active">Islam</a></li>
+        <li><a href="/islam" class="nav-link active">Threads</a></li>
       </ul>
       <button class="nav-close-btn" id="navCloseBtn" title="Close Menu" aria-label="Collapse Navigation">✕</button>
     </div>
