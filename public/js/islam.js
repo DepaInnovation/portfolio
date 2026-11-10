@@ -219,6 +219,16 @@
 
           userInfo.appendChild(metaText);
           header.appendChild(userInfo);
+
+          if ((Number(post.sort_order) || 0) < 0) {
+            const pinBadge = document.createElement('span');
+            pinBadge.className = 'post-pin-badge';
+            pinBadge.innerHTML = '📌';
+            pinBadge.title = 'Pinned Thread';
+            pinBadge.style.cssText = 'margin-left: auto; font-size: 0.95rem;';
+            header.appendChild(pinBadge);
+          }
+
           card.appendChild(header);
 
           // Media Area (1:1 square)
