@@ -14,6 +14,32 @@
       let currentMainCat = 'all';
       let currentFilterToken = null;
 
+      function getYouTubeId(url) {
+        if (!url || typeof url !== 'string') return '';
+        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+        return match ? match[1] : '';
+      }
+
+      function getVideoThumbnail(videoUrl, thumbPath) {
+        if (thumbPath && typeof thumbPath === 'string' && thumbPath.trim()) {
+          const clean = thumbPath.trim();
+          if (/^https?:\/\//i.test(clean) || clean.startsWith('/')) return clean;
+          return `https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/${clean.replace(/^\/+/, '')}`;
+        }
+        const ytId = getYouTubeId(videoUrl);
+        if (ytId) {
+          return `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+        }
+        return '';
+      }
+
+      function sanitizeUrl(url) {
+        if (!url || typeof url !== 'string') return '';
+        const clean = url.trim();
+        if (/^(?:https?:\/\/|mailto:|tel:)/i.test(clean)) return clean;
+        return '';
+      }
+
       // =====================================================================
       // CUSTOM MOUSE CURSOR EFFECT (Matches /)
       // =====================================================================
@@ -112,9 +138,7 @@
         thumbWrap.setAttribute('tabindex', '0');
         thumbWrap.setAttribute('aria-label', `Watch ${item.title || 'video'}`);
 
-        const thumbUrl = window.SupabaseApp
-          ? window.SupabaseApp.getVideoThumbnail(item.video_url || item.url, item.thumbnail_path || item.thumbnail)
-          : '';
+        const thumbUrl = item.thumbnail_url || getVideoThumbnail(item.video_url || item.url, item.thumbnail_path || item.thumbnail);
         if (thumbUrl) {
           const img = document.createElement('img');
           img.className = 'video-thumbnail-img';
@@ -185,9 +209,7 @@
         card.appendChild(info);
 
         // Click action: open in new tab (rel="noopener noreferrer")
-        const safeUrl = window.SupabaseApp
-          ? window.SupabaseApp.sanitizeUrl(item.video_url || item.url)
-          : '';
+        const safeUrl = sanitizeUrl(item.video_url || item.url);
         const handleWatch = (e) => {
           if (e) e.stopPropagation();
           if (safeUrl) {
