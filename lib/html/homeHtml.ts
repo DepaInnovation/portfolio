@@ -73,7 +73,7 @@ export const homeHtml = `
 
         <div class="hero-pill-badge">
           <span class="hero-pill-dot"></span>
-          <span class="hero-pill-text">rifhan.pongity.com</span>
+          <span class="hero-pill-text">www.riifhannnnnnnnnnnnnnnnnnnnn@handsome.com</span>
         </div>
         <p class="hero-sub-note" id="heroEasterEgg">click for go to real website</p>
       </div>

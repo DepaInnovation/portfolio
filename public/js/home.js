@@ -1385,11 +1385,16 @@
           heroTitle.classList.add('is-corrected');
         }
 
-        // ปิดฟีเจอร์กดคลิกไม่ให้กดได้อีก และเปลี่ยนข้อความด้านล่างเป็น "welcome to portfolio website"
+        // เปลี่ยนป้ายเป็นโดเมนจริง
+        const heroPillText = heroPill ? heroPill.querySelector('.hero-pill-text') : null;
+        if (heroPillText) {
+          heroPillText.textContent = 'rifhan.pongity.com';
+        }
+
+        // ปิดฟีเจอร์กดคลิกไม่ให้กดได้อีก และซ่อนข้อความด้านล่าง
         isEasterCompleted = true;
         if (eggBtn) {
-          eggBtn.textContent = 'welcome to portfolio website';
-          eggBtn.classList.remove('egg-bounce', 'is-revealed');
+          eggBtn.style.display = 'none';
         }
         if (heroPill) {
           heroPill.classList.add('is-disabled');
