@@ -15,7 +15,7 @@ export default function IslamPage() {
     <>
       <div dangerouslySetInnerHTML={{ __html: islamHtml }} />
       <Script
-        src="/js/islam.js?v=20261110_4"
+        src="/js/islam.js?v=20261110_5"
         strategy="afterInteractive"
       />
     </>

@@ -672,8 +672,7 @@
         if (activeSlideIndex < 0) activeSlideIndex = totalSlides - 1;
 
         // Category & Caption
-        const isPinned = (Number(post.sort_order) || 0) < 0;
-        lightboxCategory.textContent = (isPinned ? '📌 ' : '') + (post.category || 'Islamic Reminder');
+        lightboxCategory.textContent = post.category || 'Islamic Reminder';
         lightboxCaption.textContent = post.caption || '';
         lightboxCaption.style.display = (post.caption && post.caption.trim()) ? 'block' : 'none';
 
