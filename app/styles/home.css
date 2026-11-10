@@ -2291,12 +2291,42 @@
     .channel-pill-btn svg {
       width: 14px;
       height: 14px;
+      color: var(--text-black);
     }
 
     .channel-pill-btn:hover {
-      background: var(--text-black);
-      color: #ffffff;
-      transform: translate(-1px, -1px);
+      color: var(--text-black);
+      transform: translate(-1.5px, -1.5px);
+      box-shadow: 3px 3px 0px var(--border-black);
+    }
+
+    .channel-pill-btn:nth-child(1):hover {
+      background: #fed7aa; /* Warm Peach */
+    }
+
+    .channel-pill-btn:nth-child(2):hover {
+      background: #bbf7d0; /* Fresh Mint */
+    }
+
+    .channel-pill-btn:nth-child(3):hover {
+      background: #bae6fd; /* Soft Sky Blue */
+    }
+
+    .channel-pill-btn:nth-child(4):hover {
+      background: #fef08a; /* Butter Yellow */
+    }
+
+    .channel-pill-btn:nth-child(5):hover {
+      background: #e9d5ff; /* Soft Lavender */
+    }
+
+    .channel-pill-btn:nth-child(6):hover {
+      background: #ccfbf1; /* Pale Aqua */
+    }
+
+    .channel-pill-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--border-black);
     }
 
     .channel-action-btn {
