@@ -2,16 +2,13 @@ import { createClient } from '@supabase/supabase-js';
 import fs from 'fs/promises';
 import path from 'path';
 
-const SUPABASE_URL = process.env.SUPABASE_URL || '';
-const SUPABASE_KEY = process.env.SUPABASE_KEY || '';
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://fakucjlewuxhihbhsanu.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_KEY || 'sb_publishable_OfEEl4p2-U2BBA7OFxgr9g_tG0dtGTZ';
 const BUCKET_NAME = process.env.SUPABASE_STORAGE_BUCKET || 'site-images';
 
 let supabaseClient: ReturnType<typeof createClient> | null = null;
 
 export function getSupabaseServerClient() {
-  if (!SUPABASE_URL || !SUPABASE_KEY) {
-    throw new Error('Missing Supabase environment variables (SUPABASE_URL, SUPABASE_KEY).');
-  }
   if (!supabaseClient) {
     supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
       auth: {

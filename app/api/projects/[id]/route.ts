@@ -39,7 +39,10 @@ export async function GET(
       .maybeSingle();
 
     if (!error && data) {
-      return NextResponse.json({ success: true, data: enrichProject(data), source: 'supabase' });
+      return NextResponse.json(
+        { success: true, data: enrichProject(data), source: 'supabase' },
+        { headers: { 'Cache-Control': 'no-store, no-cache, must-revalidate' } }
+      );
     }
 
     // Fallback to local backup
