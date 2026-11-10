@@ -17,9 +17,6 @@
         if (/^https?:\/\//i.test(clean) || clean.startsWith('/') || clean.startsWith('data:')) {
           return clean;
         }
-        if (window.SupabaseApp && typeof window.SupabaseApp.getStorageImageUrl === 'function') {
-          return window.SupabaseApp.getStorageImageUrl(clean);
-        }
         return `https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/${clean.replace(/^\/+/, '')}`;
       }
 

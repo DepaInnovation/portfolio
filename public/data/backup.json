@@ -1,209 +1,138 @@
 {
   "projects": [
     {
-      "id": "d-kebun",
+      "id": "iac",
       "sort_order": 1,
-      "published": true,
-      "title": "D-kebun",
-      "description": "เว็บไซต์ส่งเสริมตลาดเกษตรอินทรีย์ สร้างช่องทางขายให้เกษตรกรสามจังหวัดชายแดนภาคใต้",
-      "category": "Projects",
+      "title": "Islamic Astronomy Center",
+      "description": "ชมรมดาราศาสตร์อิสลาม โรงเรียนธรรมวิทยามูลนิธิ",
+      "category": "Other",
       "tags": [
-        "Website",
-        "UX/UI",
-        "Digital Marketing"
+        "Islam",
+        "Astronomy",
+        "Club"
       ],
       "link_url": null,
       "image_path": null,
-      "award": "National Silver, I New Gen Award 2024",
-      "problem": "ต้องการสร้างตลาดซื้อขายให้เกษตรกรในพื้นที่สามจังหวัดชายแดนภาคใต้ ผ่านเว็บไซต์ส่งเสริมตลาดออร์แกนิกทางการเกษตรในรูปแบบ Digital Marketing",
-      "my_role": "เป็นโครงงานชิ้นแรกของผม ได้เรียนรู้การพัฒนาเว็บไซต์ตั้งแต่เริ่มต้น ฝึกออกแบบ UX/UI ให้ใช้งานง่ายสำหรับกลุ่มเป้าหมาย รวมถึงเขียนโค้ดและจัดการโครงสร้างเว็บไซต์ ซึ่งเป็นพื้นฐานที่ทำให้ผมสนใจด้านการพัฒนาซอฟต์แวร์มากขึ้น",
-      "tech": [
-        "Website",
-        "UX/UI",
-        "Digital Marketing"
-      ],
-      "awards": [
+      "award": null,
+      "problem": null,
+      "my_role": "หากท้องฟ้าคือชมรม เหล่าหมู่ดาวที่คอยส่องแสงระยิบระยับก็คงเป็นสมาชิกของชมรมที่แต่ละคนต่างมีบทบาท หน้าที่ของตัวเอง บางคนเป็นดวงอาทิตย์ที่คอยส่องแสงให้คนอื่น บางคนเป็นโลกที่ให้ผู้คนเข้ามาปรึกษาปล่อยวางใจ หรือบางคนก็เป็นเพียงหมู่ดาวดวงเล็กๆที่คิดว่าตัวเองไม่มีความพิเศษ แต่เพียงแค่คุณอยู่บนท้องฟ้า แม้จะเล็กแค่ไหน ก็จะมีคนตามหาคุณจนเจอเสมอ ส่องสว่างแบบนี้ต่อไปจนกว่าคนผู้นั้นจะตามหาคุณจนเจอนะ :)",
+      "tech": [],
+      "awards": [],
+      "media": [
         {
-          "level": "National",
-          "title": "เหรียญเงิน",
-          "detail": "I New Gen Award 2024 จัดโดยสำนักงานการวิจัยแห่งชาติ (วช.)"
+          "path": "projects/1793548501595-5sxpvt.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548501595-5sxpvt.webp"
+        },
+        {
+          "path": "projects/1793548502436-fwksid.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548502436-fwksid.webp"
+        },
+        {
+          "path": "projects/1793548504622-tqflx3.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548504622-tqflx3.webp"
+        },
+        {
+          "path": "projects/1793548503288-np2so0.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548503288-np2so0.webp"
+        },
+        {
+          "path": "projects/1793548503816-zmhkxb.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548503816-zmhkxb.webp"
+        },
+        {
+          "path": "projects/1793548505108-7j9znr.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548505108-7j9znr.webp"
+        },
+        {
+          "path": "projects/1793548505631-ry25wo.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548505631-ry25wo.webp"
+        },
+        {
+          "path": "projects/1793548506214-fzs9eo.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548506214-fzs9eo.webp"
+        },
+        {
+          "path": "projects/1793548507000-aphajk.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793548507000-aphajk.webp"
         }
       ],
-      "media": []
+      "published": true,
+      "image_url": ""
     },
     {
-      "id": "ws-smart-control",
-      "sort_order": 2,
-      "published": true,
-      "title": "WS smart control",
-      "description": "AI คำนวณความต้องการน้ำของพืชจากภาพถ่ายดาวเทียม พร้อมแอปให้เกษตรกรใช้งาน",
-      "category": "Projects",
-      "tags": [
-        "Machine Learning",
-        "Satellite Data",
-        "Application"
-      ],
-      "link_url": null,
-      "image_path": null,
-      "award": "National Runner-up 2, TJWP 2024",
-      "problem": "ผมเห็นปัญหาการขาดแคลนน้ำ การใช้น้ำอย่างสิ้นเปลือง และภาวะโลกร้อน จึงอยากเพิ่มความคุ้มค่าและประสิทธิภาพในการใช้ทรัพยากรน้ำ",
-      "my_role": "นำ AI Machine Learning ประเภทพยากรณ์ข้อมูล มาคำนวณปริมาณน้ำที่เหมาะสมของพืชแต่ละชนิดในแต่ละช่วงอายุ จากภาพถ่ายดาวเทียม Sentinel-2 และ Landsat 7, 8 และ 9 โดยวิเคราะห์และคำนวณค่า Kc (สัมประสิทธิ์พืช) จากนั้นพัฒนาแอปพลิเคชันเพื่อให้เกษตรกรทุกคนใช้งานได้",
-      "tech": [
-        "Machine Learning",
-        "Satellite Data",
-        "Application"
-      ],
-      "awards": [
-        {
-          "level": "National",
-          "title": "รองชนะเลิศอันดับ 2",
-          "detail": "Thailand Junior Water Prize (TJWP) 2024 จัดโดย สสวท. ได้รับคัดเลือก 1 ใน 36 ทีมทั่วประเทศ"
-        },
-        {
-          "level": "Regional",
-          "title": "ผ่านรอบข้อเสนอโครงการ",
-          "detail": "Young Scientist Competition (YSC) 2026 สาขาวิทยาการคอมพิวเตอร์ ได้รับคัดเลือก 1 ใน 195 โครงการ"
-        }
-      ],
-      "media": []
-    },
-    {
-      "id": "bcs-detector",
-      "sort_order": 3,
-      "published": true,
-      "title": "BCS DETECTOR",
-      "description": "AI ประมวลผลภาพ ตรวจจับระยะและชนิดของเม็ดเลือดขาว ช่วยตรวจเม็ดเลือดในโรงพยาบาลชุมชน",
-      "category": "Projects",
-      "tags": [
-        "CNN",
-        "K-NN",
-        "Image Processing"
-      ],
-      "link_url": null,
-      "image_path": null,
-      "award": "International Platinum, National Gold",
-      "problem": "ต้องการเพิ่มประสิทธิภาพและความแม่นยำของการตรวจความสมบูรณ์ของเม็ดเลือด (Complete Blood Count) ในการวินิจฉัยผู้ป่วยของโรงพยาบาลชุมชน",
-      "my_role": "พัฒนาระบบประมวลผลภาพด้วย AI ที่ตรวจจับและจำแนกชนิดและระยะของเม็ดเลือดขาวจากภาพกล้องจุลทรรศน์ ด้วยเทคนิค CNN และ K-NN โดยใช้ภาพถ่ายเซลล์จากโรงพยาบาลศูนย์ยะลา และเพิ่มข้อมูลด้วย Data Augmentation ระหว่างทำได้ศึกษาประเภทของ AI วิธีเพิ่มความแม่นยำของโมเดล และฝึกเขียนโค้ดเชื่อมต่อฮาร์ดแวร์กับซอฟต์แวร์",
-      "tech": [
-        "CNN",
-        "K-NN",
-        "Object Detection",
-        "Image Classification",
-        "Data Augmentation"
-      ],
-      "awards": [
-        {
-          "level": "International",
-          "title": "Platinum (ระดับสูงสุด)",
-          "detail": "Malaysia International Gifted Olympiad จัดแบบออนไลน์ มีทีมเข้าร่วมกว่า 1,800 ทีม จาก 8 ประเทศ"
-        },
-        {
-          "level": "National",
-          "title": "เหรียญทอง",
-          "detail": "I New Gen Award 2025 จัดโดยสำนักงานการวิจัยแห่งชาติ (วช.)"
-        },
-        {
-          "level": "National",
-          "title": "เหรียญเงิน",
-          "detail": "Thailand Halal Scientist Competition & Halal Innovation 2025"
-        },
-        {
-          "level": "Regional",
-          "title": "เหรียญเงิน",
-          "detail": "YRU Invention and Invention Award 2025"
-        },
-        {
-          "level": "Area",
-          "title": "เหรียญทองชนะเลิศ",
-          "detail": "โครงงานคอมพิวเตอร์ประเภทซอฟต์แวร์ ระดับ ม.ปลาย งานศิลปหัตถกรรมนักเรียน ครั้งที่ 72"
-        }
-      ],
-      "media": []
-    },
-    {
-      "id": "safety-lock",
-      "sort_order": 4,
-      "published": true,
-      "title": "SAFETY LOCK",
-      "description": "พวงกุญแจนิรภัยเชื่อมแอป ติดตามตำแหน่ง กดปุ่มขอความช่วยเหลือจากสถานีตำรวจใกล้เคียง",
-      "category": "Projects",
-      "tags": [
-        "Application",
-        "Location Tracking",
-        "Hardware"
-      ],
-      "link_url": null,
-      "image_path": null,
-      "award": "National Silver, I New Gen Award",
-      "problem": "ต้องการเสริมความปลอดภัยให้นักท่องเที่ยวและส่งเสริมอุตสาหกรรมท่องเที่ยว ด้วยนวัตกรรมป้องกันภัยคุกคามพร้อมระบบช่วยเหลือเร่งด่วน",
-      "my_role": "ออกแบบพวงกุญแจที่เชื่อมต่อกับแอปพลิเคชันเพื่อติดตามตำแหน่งปัจจุบัน หากอยู่ในสถานการณ์อันตราย ผู้ใช้กดปุ่มหรือดึงสลักเพื่อส่งสัญญาณขอความช่วยเหลือไปยังสถานีตำรวจในบริเวณใกล้เคียง",
-      "tech": [
-        "Application",
-        "Location Tracking",
-        "Hardware"
-      ],
-      "awards": [
-        {
-          "level": "National",
-          "title": "เหรียญเงิน",
-          "detail": "I New Gen Award 2025 จัดโดยสำนักงานการวิจัยแห่งชาติ (วช.)"
-        },
-        {
-          "level": "Regional",
-          "title": "เข้าร่วม",
-          "detail": "Southern Inventor Award 2025 ระดับมัธยมศึกษา จัดโดย วช. ร่วมกับมหาวิทยาลัยทักษิณ"
-        }
-      ],
-      "media": []
-    },
-    {
-      "id": "korea",
-      "sort_order": 5,
-      "published": true,
-      "title": "KOREA",
-      "description": "ตัวแทนยุวชนไทยแข่งหุ่นยนต์นานาชาติ IYRC 2025 ที่เกาหลีใต้ ได้รางวัล THE BEST 2 รายการ",
+      "id": "iyrc",
+      "sort_order": 1,
+      "title": "International Youth Robot Competition 2025 12th",
+      "description": "ได้รับคัดเลือกเป็นตัวแทนยุวชนประเทศไทยในการแข่งขัน International Youth Robot Association ณ เมืองชอนัน สาธารณรัฐเกาหลี",
       "category": "Robotics",
       "tags": [
-        "Robotics",
-        "Fire-Fighting Robot",
-        "Sumo Robot"
+        "Robot save the forest",
+        "Robot Autonomous Push-push"
       ],
       "link_url": null,
       "image_path": null,
-      "award": "THE BEST 2 awards, IYRC 2025",
-      "problem": "ได้รับคัดเลือกเป็นตัวแทนยุวชนประเทศไทยไปแข่งขันหุ่นยนต์นานาชาติ ณ เมืองชอนัน สาธารณรัฐเกาหลี",
-      "my_role": "ได้พัฒนาทักษะการเขียนโค้ดอย่างเป็นระบบ เรียนรู้การจัดลำดับความสำคัญของโค้ดและการออกแบบอัลกอริทึมให้มีประสิทธิภาพ และแลกเปลี่ยนเทคนิคการออกแบบและประกอบหุ่นยนต์กับทีมนานาชาติ\n\nในสนามซูโม (Push-Push) ได้ออกแบบและสร้างหุ่นยนต์ตามข้อกำหนด เขียนโปรแกรมควบคุมการเคลื่อนที่ และวิเคราะห์จุดแข็งจุดอ่อนของคู่แข่งเพื่อปรับกลยุทธ์ระหว่างแข่ง ส่วนสนาม Robotics Challenge ได้ใช้ IR Sensor ตรวจจับและอ่านค่าเส้นทาง ปรับความไวให้เหมาะกับสนาม และแก้ปัญหาเฉพาะหน้าเมื่อหุ่นยนต์ออกนอกเส้นทาง",
-      "tech": [
-        "Robotics",
-        "Fire-Fighting Robot",
-        "Sumo Robot",
-        "IR Sensor"
-      ],
+      "award": null,
+      "problem": null,
+      "my_role": null,
+      "tech": [],
       "awards": [
         {
           "level": "International",
-          "title": "THE BEST 2 รายการ",
-          "detail": "หุ่นยนต์ป้องกันไฟป่าและหุ่นยนต์ซูโม ในงาน IYRC 2025 ณ เมืองชอนัน สาธารณรัฐเกาหลี"
+          "title": "The Best of Robot save the forest",
+          "detail": "IYRC 2025 (International Youth Robot Competition 2025)"
         },
         {
-          "level": "National",
-          "title": "รองชนะเลิศอันดับ 1",
-          "detail": "หุ่นยนต์ซูโม (Push-Push) รุ่นซีเนียร์ STEM Education Robot Competition โดยศูนย์วิทยาศาสตร์เพื่อการศึกษารังสิต"
-        },
-        {
-          "level": "Provincial",
-          "title": "เหรียญเงิน",
-          "detail": "Robotics Challenge ทั่วไป มหกรรมการแข่งขันทักษะวิชาการ ปีการศึกษา 2566 จังหวัดยะลา"
+          "level": "International",
+          "title": "The Best of Robot Autonomous Push-push",
+          "detail": "IYRC 2025 (International Youth Robot Competition 2025)"
         }
       ],
-      "media": []
+      "media": [
+        {
+          "path": "projects/1793544108515-8ircmj.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544108515-8ircmj.webp"
+        },
+        {
+          "path": "projects/1793544111323-lsb5zu.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544111323-lsb5zu.webp"
+        },
+        {
+          "path": "projects/1793547992867-vh7y5m.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793547992867-vh7y5m.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
     },
     {
       "id": "posn",
-      "sort_order": 6,
-      "published": true,
-      "title": "POSN",
-      "description": "ค่ายโอลิมปิกวิชาการ สอวน. สาขาฟิสิกส์ ค่าย 1 ศูนย์โรงเรียนพัทลุง ปี 2566",
+      "sort_order": 3,
+      "title": "ค่ายโอลิมปิกวิชาการ (สอวน.) สาขาฟิสิกส์",
+      "description": "เข้าร่วมการอบรมโอลิมปิกวิชาการ (สอวน.) สาขาฟิสิกส์ ค่าย 1 ศูนย์โรงเรียนพัทลุง จังหวัดพัทลุง ปีการศึกษา 2566",
       "category": "Academic",
       "tags": [
         "Physics",
@@ -213,48 +142,659 @@
       "image_path": null,
       "award": null,
       "problem": null,
-      "my_role": "เข้าอบรมโอลิมปิกวิชาการ (สอวน.) สาขาฟิสิกส์ ค่าย 1 ศูนย์โรงเรียนพัทลุง ปีการศึกษา 2566 เป็นประตูเบิกทางให้ผมสนใจฟิสิกส์ ได้เรียนรู้การคิดอย่างเป็นระบบ ได้ประสบการณ์ใหม่และเพื่อนใหม่ที่เก่งๆ ทำให้รู้ว่ายังมีคนที่เก่งกว่าเราอีกมาก และเป็นแรงผลักดันให้ผมมุ่งมั่นพัฒนาตัวเอง",
-      "tech": [
-        "Physics"
-      ],
-      "awards": [
+      "my_role": null,
+      "tech": [],
+      "awards": [],
+      "media": [
         {
-          "level": "Participation",
-          "title": "เข้าร่วมการอบรม",
-          "detail": "สอวน. สาขาฟิสิกส์ ค่าย 1"
+          "path": "projects/1793544532231-aw4yxx.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544532231-aw4yxx.webp"
+        },
+        {
+          "path": "projects/1793544538049-xsspzj.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544538049-xsspzj.webp"
         }
       ],
-      "media": []
+      "published": true,
+      "image_url": ""
     },
     {
-      "id": "pre-posn",
-      "sort_order": 7,
-      "published": true,
-      "title": "PRE POSN",
-      "description": "ค่ายพรีโอลิมปิกวิชาการสาขาฟิสิกส์ สำหรับนักเรียนจังหวัดชายแดนภาคใต้",
-      "category": "Academic",
+      "id": "bcs",
+      "sort_order": 4,
+      "title": "BCS Detector",
+      "description": "นวัตกรรม BCS Detector การพัฒนาระบบ Image Processing จากปัญญาประดิษฐ์ในการตรวจจับระยะและชนิดของเซลล์เม็ดเลือดขาวด้วยเทคนิค CNN (Convolutional Neural Network) และ K-NN (K-Nearest Neighbors) เพื่อเพิ่มประสิทธิภาพและความแม่นยำให้กระบวนการตรวจค่าความสมบูรณ์ของเม็ดเลือด(Complete Blood Count) ในการวินิจฉัยผู้ป่วยในโรงพยาบาลชุมชน",
+      "category": "Projects",
       "tags": [
-        "Physics",
-        "Pre-POSN"
+        "Blood Cells",
+        "AI",
+        "CNN",
+        "Image Processing"
       ],
       "link_url": null,
       "image_path": null,
       "award": null,
       "problem": null,
-      "my_role": "ผ่านการเข้าค่ายพรีโอลิมปิกวิชาการสำหรับนักเรียนในพื้นที่จังหวัดชายแดนภาคใต้ รายวิชาฟิสิกส์ จัดโดยสำนักงานคณะกรรมการส่งเสริมการศึกษาเอกชน",
-      "tech": [
-        "Physics"
-      ],
+      "my_role": "โครงงานชิ้นนี้ใช้งาน AI Machine learning ประเภท object detection และ Image classification เพื่อการตรวจจับ จำแนกชนิด และจำแนกระยะของเซลล์เม็ดเลือดขาว (White Blood Cell: WBC) จาก Blood smear ผ่านกล้อง Microscope โดยได้รับฐานข้อมูลภาพถ่ายเซลล์เม็ดเลือดขาวจากโรงพยาบาลศูนย์ยะลา โดยใช้เทคนิค Data augmentation ในการเพิ่มฐานข้อมูล การทำโครงงานชิ้นนี้ทำให้ผมได้ศึกษาค้นคว้าประเภทของ AI และการใช้เทคนิคต่าง ๆ ในการเพิ่มความแม่นยำของโมเดล อีกทั้งยังเพิ่มทักษะทางด้านโค้ดดิ้ง เพื่อสร้างโปรแกรมในการเชื่อมต่อระหว่าง Hardware และ software เข้าด้วยกัน",
+      "tech": [],
       "awards": [
         {
-          "level": "Participation",
-          "title": "ผ่านการเข้าค่าย",
-          "detail": "พรีโอลิมปิกวิชาการ สาขาฟิสิกส์"
+          "level": "International",
+          "title": "PLATINUM AWARD",
+          "detail": "MALAYSIA INTERNATIONAL GIFTED OLYMPIAD"
+        },
+        {
+          "level": "National",
+          "title": "รางวัลระดับเหรียญทอง",
+          "detail": " I New Gen Award 2025 "
+        },
+        {
+          "level": "National",
+          "title": "รางวัลระดับเหรียญเงิน",
+          "detail": "Thailand Halal Scientist Competition & Halal Innovation 2025"
+        },
+        {
+          "level": "Regional",
+          "title": "รางวัลระดับเหรียญเงิน",
+          "detail": "YRU Invention and Invention Award 2025"
+        },
+        {
+          "level": "Provincial",
+          "title": "รางวัลระดับเหรียญทอง",
+          "detail": "โครงงานคอมพิวเตอร์ประเภทซอฟต์แวร์ระดับชั้น ม.ปลาย งานศิลปหัตถกรรมนักเรียน ระดับเขตพื้นที่   การศึกษา ครั้งที่ 72"
         }
       ],
-      "media": []
+      "media": [
+        {
+          "path": "projects/1793545300478-33ihw6.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793545300478-33ihw6.webp"
+        },
+        {
+          "path": "projects/1793545301955-j9sj3t.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793545301955-j9sj3t.webp"
+        },
+        {
+          "path": "projects/1793545302783-xp56ol.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793545302783-xp56ol.webp"
+        },
+        {
+          "path": "projects/1793545303677-awgt39.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793545303677-awgt39.webp"
+        },
+        {
+          "path": "projects/1793545314931-enwfph.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793545314931-enwfph.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
+    },
+    {
+      "id": "engguide",
+      "sort_order": 5,
+      "title": "ENGGUIDE",
+      "description": "we are pleased to help you to improve your English.",
+      "category": "Other",
+      "tags": [
+        "English",
+        "Learning through Sharing"
+      ],
+      "link_url": null,
+      "image_path": null,
+      "award": null,
+      "problem": null,
+      "my_role": "ทุกการประชุม ทุกกิจกรรม และทุกค่ายที่จัด  สิ่งที่ไม่เคยจางหายไปจากชมรมคือรอยยิ้มและความสุข ทุกคนต่างเข้าใจซึ่งกันและกัน ให้อภัยต่อกันและกัน อาจารย์ที่ปรึกษาที่คอยพยุงตัวเราเมื่อเราหกล้ม เพื่อนร่วมชมรมที่คอยสู้ไปด้วยกัน  ความสร้างสรรค์และการตามเทรนคือหัวใจหลักของชมรม แต่ละธีมที่เคยทำมาล้วนทำตามเทรนที่ฮิทจากช่วงเวลานั้นเป็นส่วนใหญ่ ทั้ง เขี้ยวกุด แฮรรี่พอตเตอร์ เวนส์เดย์อดัม หรือแม้แต่ราชวงค์อังกฤษยังทำมาแล้ว หากชีวิตนี้ขาดอิ้งไก่ไป ชีวิตช่วงม.ปลาย ก็คงไม่มีความสุขมากขนาดนี้",
+      "tech": [],
+      "awards": [],
+      "media": [
+        {
+          "path": "projects/1793549292421-odptvg.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549292421-odptvg.webp"
+        },
+        {
+          "path": "projects/1793549293965-recr4f.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549293965-recr4f.webp"
+        },
+        {
+          "path": "projects/1793549294544-nq4e08.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549294544-nq4e08.webp"
+        },
+        {
+          "path": "projects/1793549295533-8a9wbj.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549295533-8a9wbj.webp"
+        },
+        {
+          "path": "projects/1793549296518-4mue1c.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549296518-4mue1c.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
+    },
+    {
+      "id": "ws",
+      "sort_order": 6,
+      "title": "WS smart control",
+      "description": "การพัฒนา AI Machine learning ประเภท Predict Precision เพื่อคำนวณหาปริมาณความต้องการน้ำที่เหมาะสมของพืชในแต่ละช่วงอายุ จากข้อมูลภาพถ่ายดาวเทียม เพื่อเพิ่มความคุ้มค่าและเพิ่มประสิทธิภาพในการใช้ทรัพยากรน้ำ จากปัญหาการขาดแคลนน้ำและภาวะโลกร้อนของโลก",
+      "category": "Projects",
+      "tags": [
+        "Linear Regression",
+        "Machine Learning"
+      ],
+      "link_url": null,
+      "image_path": null,
+      "award": null,
+      "problem": null,
+      "my_role": "โครงงานชิ้นนี้ผมได้เห็นปัญหาการขาดแคลนน้ำและการใช้น้ำอย่างสิ้นเปลือง ผมจึงได้นำ Ai Machine learning ประเภท predict data มาคำนวณหาปริมาณความต้องการน้ำของพืชในแต่ละชนิด โดยนำข้อมูลจากภาพถ่ายดาวเทียม sentinel 2  landset 7 8 และ9 ในการวิเคราะห์และคำนวณค่า Kc (สัมประสิทธิ์พืชที่ใช้ วัดอัตราการใช้น้ำของพืช) จากนั้นพัฒนา Application เพื่อให้เกษตกรทุกคนในประเทศสามารถใช้งานได้",
+      "tech": [],
+      "awards": [
+        {
+          "level": "National",
+          "title": "รางวัลรองชนะเลิศอันดับที่  2 ",
+          "detail": "Thailand Junior Water Prize (TJWP) 2024"
+        },
+        {
+          "level": "Regional",
+          "title": "ผ่านเกณฑ์การประเมิน",
+          "detail": "YSC (Young Scientist Competition) 2026 "
+        }
+      ],
+      "media": [
+        {
+          "path": "projects/1793545492771-ax65w4.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793545492771-ax65w4.webp"
+        },
+        {
+          "path": "projects/1793545494158-21f5nq.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793545494158-21f5nq.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
+    },
+    {
+      "id": "pre-posn",
+      "sort_order": 7,
+      "title": "ค่ายพรีโอลิมปิกวิชาการสาขาวิชาฟิสิกส์",
+      "description": "ผ่านการเข้าค่ายพรีโอลิมปิกวิชาการนักเรียนในพื้นที่จังหวัดชายแดนภาคใต้ ในรายวิชาฟิสิกส์ จัดขึ้นโดยสำนักงานคณะกรรมการส่งเสริมการศึกษเอกชน",
+      "category": "Academic",
+      "tags": [
+        "Pre-POSN",
+        "Physics"
+      ],
+      "link_url": null,
+      "image_path": null,
+      "award": null,
+      "problem": null,
+      "my_role": null,
+      "tech": [],
+      "awards": [],
+      "media": [
+        {
+          "path": "projects/1793544687770-snkhdx.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544687770-snkhdx.webp"
+        },
+        {
+          "path": "projects/1793546541076-g0u0f1.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793546541076-g0u0f1.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
+    },
+    {
+      "id": "safety-lock",
+      "sort_order": 8,
+      "title": "Safety Lock",
+      "description": "นวัตกรรม SAfety lock นวัตกรรมป้องกันภัยคุกคาม พร้อมระบบช่วยเหลือเร่งด่วนเพื่อเสริมสร้างความปลอดภัยและส่งเสริมอุตสาหกรรมการท่องเที่ยว",
+      "category": "Projects",
+      "tags": [
+        "IoT",
+        "GPS Tracking",
+        "Personal Safety"
+      ],
+      "link_url": null,
+      "image_path": null,
+      "award": null,
+      "problem": null,
+      "my_role": "โครงงานชิ้นนี้สร้างเพื่อเพิ่มความปลอดภัยแก่นักท่องเที่ยว โดยการออกแบบพวงกุญแจที่สามารถเชื่อมต่อกับ application เพื่อติดตามตำแหน่งปัจจุบัน หากอยู่ในสถานการณ์อันตราย ผู้ใช้งานสามารถกดปุ่มหรือดึงสลัก เพื่อส่งสัญญานขอความช่วยเหลือไปยัง สถาณีตำรวจในบริเวณใกล้ๆ",
+      "tech": [],
+      "awards": [
+        {
+          "level": "National",
+          "title": "รางวัลระดับเหรียญเงิน",
+          "detail": "I New Gen Award 2025"
+        },
+        {
+          "level": "Regional",
+          "title": "เข้าร่วม",
+          "detail": "Southern Inventor Award 2025"
+        }
+      ],
+      "media": [
+        {
+          "path": "projects/1793546005436-qdtn03.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793546005436-qdtn03.webp"
+        },
+        {
+          "path": "projects/1793546006721-ho9hje.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793546006721-ho9hje.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
+    },
+    {
+      "id": "robot",
+      "sort_order": 9,
+      "title": "Robot Competition",
+      "description": "การแข่งขันหุ่นยนต์ภายในประเทศ",
+      "category": "Robotics",
+      "tags": [
+        "Robot"
+      ],
+      "link_url": null,
+      "image_path": null,
+      "award": null,
+      "problem": null,
+      "my_role": null,
+      "tech": [],
+      "awards": [
+        {
+          "level": "National",
+          "title": "รองชนะเลิศอันดับ 1",
+          "detail": "การแข่งขันหุ่นยนต์ซูโม่ (Push-Push) รุ่นซีเนียร์ (STEM Education Robot Competition)"
+        },
+        {
+          "level": "Provincial",
+          "title": "รางวัลเหรียญเงิน",
+          "detail": " โครงการมหกรรมการแข่งขันทักษะวิชาการ ประจำปีการศึกษา 2566"
+        }
+      ],
+      "media": [
+        {
+          "path": "projects/1793544178534-uwlvgo.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544178534-uwlvgo.webp"
+        },
+        {
+          "path": "projects/1793544179970-zh17hy.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544179970-zh17hy.webp"
+        },
+        {
+          "path": "projects/1793544180569-fcqq66.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544180569-fcqq66.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
+    },
+    {
+      "id": "d-kebun",
+      "sort_order": 10,
+      "title": "D-kebun",
+      "description": "นวัตกรรม D-kebun การพัฒนา website ส่งเสริมตลาดออร์แกนิคทางการเกษตรในรูปแบบ Digital Marketing เพื่อสร้างตลาดการซื้อขายให้กับเกษตรกรในพื้นที่สามจังหวัดชายแดนภาคใต้",
+      "category": "Projects",
+      "tags": [
+        "Website",
+        "Organic",
+        "Farmer"
+      ],
+      "link_url": null,
+      "image_path": null,
+      "award": null,
+      "problem": null,
+      "my_role": null,
+      "tech": [],
+      "awards": [
+        {
+          "level": "National",
+          "title": "รางวัลระดับเหรียญเงิน",
+          "detail": "I new gen award 2024 จัดโดยสำนักงานการวิจัยแห่งชาติ (วช.)"
+        }
+      ],
+      "media": [
+        {
+          "path": "projects/1793544900173-q7mbou.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544900173-q7mbou.webp"
+        },
+        {
+          "path": "projects/1793544901418-5xcf6d.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793544901418-5xcf6d.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
+    },
+    {
+      "id": "tcs",
+      "sort_order": 11,
+      "title": "TVM Coding Space",
+      "description": "กลุ่มงานนวัตกรรมนักเรียน",
+      "category": "Other",
+      "tags": [
+        "DEPA",
+        "Inventers"
+      ],
+      "link_url": null,
+      "image_path": null,
+      "award": null,
+      "problem": null,
+      "my_role": "การเดินทางไปสู่จุดหมาย ย่อมต้องใช้แผนที่ในการนำทาง ถ้าอย่างงั้น กลุ่มงานนวัตกรรมนักเรียน ก็คงเป็นแผนที่สุดแสนจะลิมิเต็ด ที่คอยนำทางให้กับผม แผนที่เล่มนี้ไม่ได้มีแค่แบบแผนเพียงเท่านั้น แต่เรามีอาจารย์ที่คอยให้คำปรึกษาทุกเรื่องของชีวิต เรามีรุ่นพี่ที่สามารถคุยโม้ในเรื่องที่ไร้สาระได้ และยังมีเพื่อนๆที่คอยเดินทางพร้อมกับเรา แม้ในวันที่ต่างหลงทาง แต่เราก็ยังมีแผนที่ที่พร้อมจะคอยช่วยมุ่งหน้าไปยังเป้าหมายของเราอยู่เสมอ",
+      "tech": [],
+      "awards": [],
+      "media": [
+        {
+          "path": "projects/1793549522677-ksvvrc.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549522677-ksvvrc.webp"
+        },
+        {
+          "path": "projects/1793549524760-obf0qf.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549524760-obf0qf.webp"
+        },
+        {
+          "path": "projects/1793549525638-eqfpqn.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549525638-eqfpqn.webp"
+        },
+        {
+          "path": "projects/1793549527537-ktf7ll.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549527537-ktf7ll.webp"
+        },
+        {
+          "path": "projects/1793549550851-3mvp7g.webp",
+          "type": "image",
+          "caption": "",
+          "url": "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/projects/1793549550851-3mvp7g.webp"
+        }
+      ],
+      "published": true,
+      "image_url": ""
     }
   ],
-  "videos": [],
-  "islam_posts": []
+  "videos": [
+    {
+      "id": "video-1793477049829",
+      "sort_order": 1,
+      "title": "แมวคอม",
+      "description": "อย่าพึ่งขยันเรียน ขอนอนตีพุงอยู่บ้านก่อน",
+      "category": "Computer",
+      "duration": "76.76",
+      "series_label": "catputerz",
+      "video_url": "https://youtu.be/IxX_QHay02M",
+      "thumbnail_path": null,
+      "published": true,
+      "thumbnail_url": "https://img.youtube.com/vi/IxX_QHay02M/hqdefault.jpg"
+    },
+    {
+      "id": "video-1793476906776",
+      "sort_order": 1,
+      "title": "แมวแคล",
+      "description": "อย่าพึ่งขยันเรียน ขอนอนตีพุงอยู่บ้านก่อน",
+      "category": "Calculus",
+      "duration": "67.67",
+      "series_label": "catculasz",
+      "video_url": "https://youtu.be/IxX_QHay02M",
+      "thumbnail_path": null,
+      "published": true,
+      "thumbnail_url": "https://img.youtube.com/vi/IxX_QHay02M/hqdefault.jpg"
+    }
+  ],
+  "islam_posts": [
+    {
+      "id": "post-1793525052304",
+      "sort_order": 0,
+      "caption": "Hari ini dapet banyak pelajaran dari ayat ini💌",
+      "category": "@auliaaazzah",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525033551-hc517g.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525035461-f55py4.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525036047-cz1acs.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525036708-akcp2h.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525037080-b95kvq.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525037752-ja1cra.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525033551-hc517g.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525035461-f55py4.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525036047-cz1acs.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525036708-akcp2h.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525037080-b95kvq.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793525037752-ja1cra.jpg"
+      ]
+    },
+    {
+      "id": "post-1793524962221",
+      "sort_order": 0,
+      "caption": "",
+      "category": "@stickitt.t",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524959806-gfqohn.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524959806-gfqohn.jpg"
+      ]
+    },
+    {
+      "id": "post-1793524892088",
+      "sort_order": 0,
+      "caption": "จะไม่เรียกว่า ตะวักกัล จนกว่าจะมี ๓ ประการนี้\n\n๑. ทำสาเหตุ ที่จะได้รับสิ่งนั้นอย่างเต็มที่\nหมายถึง ถ้าจะสอบ ก็ต้องอ่านหนังสือ\n\n๒. มอบหมายการงานที่ทำกับอัลลอฮฺ\nเมื่อทำเต็มที่แล้ว ก็ปล่อยไว้กับอัลลอฮฺ\n\n๓. เชื่อมั่นกับอัลลอฮฺ ถึงผลที่คาดหวังไว้\nมีความเชื่ออย่างสนิทใจ ในการมอบหมายกับพระองค์\n\nการตะวักกัลแบบผิด ๆ\nผิดกับข้อแรก : ไม่อ่านหนังสือสอบ แต่บอกตะวักกัล\nผิดกับข้อ ๒ : ทำแล้ว ไม่สบายใจ ยังกังวลกับสิ่งที่ล่วงไปแล้ว\nผิดกับข้อ ๓ : ไม่เชื่อมั่น หวั่นกลัวกับผลที่จะเกิดขึ้นในอนาคต\n\nตะวักกัล ต้องครบ ๓ อย่าง\nทำปัจจุบันให้เต็มที่\nเมื่อทำเสร็จ ไม่พูดพร่ำถึงอดีตที่ผ่าน\nและไม่วิตกกับผลที่จะเกิดขึ้น ในอนาคต\n\nนี่คือ ตะวักกัล ของจริง..\n\nقال الشيخ صالح آل شيخ حفظه الله:\nالتوكل يجمع:\n١- فعل السبب.\n٢- وتفويض الأمر إلى الله.\n٣-وصدق اللجوء إلى الله في أن يحصل المقصود.\n\n(شرح الواسطية (١/٢٤٣))\n\n#คุณครูขนมปัง",
+      "category": "@kruknompang",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524864333-7ny1pe.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524865759-73mq2c.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524866679-4yrz73.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524867497-y1lh3f.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524864333-7ny1pe.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524865759-73mq2c.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524866679-4yrz73.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524867497-y1lh3f.jpg"
+      ]
+    },
+    {
+      "id": "post-1793524802020",
+      "sort_order": 0,
+      "caption": "Closer to you than your jugular vein. 🤍 Even in the moments when you feel alone, unheard, or misunderstood, Allah knows what is hidden within your heart. He knows the thoughts you cannot put into words, the tears you hide, the battles you fight silently, and the prayers you make in the quiet of the night. You may feel distant, but Allah is never unaware of you. Trust Him with what weighs heavy on your heart, because the One who knows you completely is the One who can bring you peace.",
+      "category": "@islamknowledgefeed",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524796931-vubygc.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524798629-bwonnp.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524796931-vubygc.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793524798629-bwonnp.jpg"
+      ]
+    },
+    {
+      "id": "post-1793523539953",
+      "sort_order": 0,
+      "caption": "just got a little distracted by the world\nGapapa bgt kita enjoy our life, tp jgn lupa Tujuan utamanya yaa guys 😗🤏🏼\n\n.\n#selfreminders #islamicposts",
+      "category": "@fatahapress",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523530959-qgqu5m.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523532781-6ujm2j.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523533557-y48o3v.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523530959-qgqu5m.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523532781-6ujm2j.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523533557-y48o3v.jpg"
+      ]
+    },
+    {
+      "id": "post-1793523442093",
+      "sort_order": 0,
+      "caption": "apa kamu ingin tahu lebih lanjut tentang resep masakan selanjutnya ? jangan lupa disave & follow yaaa 🤏🏻\n@im.ajiiee 🙌🏻 #imajiiee #resep",
+      "category": "@im.ajiiee",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523438940-k4lfkf.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793523438940-k4lfkf.jpg"
+      ]
+    },
+    {
+      "id": "post-1793479607811",
+      "sort_order": 0,
+      "caption": "Follow untuk resep kehidupan lainnya 🔔🌙\n.\n.\n.\n#rells #deringsemesta #story #qoute #sholat",
+      "category": "@deringsemesta",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479589542-f012dc.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479591000-7l3k52.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479591515-toes02.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479591917-e5vh1v.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479589542-f012dc.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479591000-7l3k52.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479591515-toes02.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479591917-e5vh1v.jpg"
+      ]
+    },
+    {
+      "id": "post-1793479384419",
+      "sort_order": 0,
+      "caption": "ถ้าเรายังขอดุอาอ์เรื่องเดิมได้ โดยไม่รู้สึกเบื่อ\nนั่นอาจเป็นสัญญาณว่า อัลลอฮ์ยังคงเปิดประตูให้เราอยู่เสมอ 🤍✨\n\n>บทความนี้\nเกิดขึ้นในช่วงเวลาที่ผมนั่งทำงานเงียบๆ คนเดียว\n\nไม่มีใครได้ยิน ไม่มีใครรู้\nว่าหัวใจกำลังขอเรื่องเดิมซ้ำๆ\n\nแปลกนะ…\nทั้งที่เป็นเรื่องเดิม\nแต่กลับไม่เคยเบื่อที่จะขอเลย\n\nบางที…\nการที่เรายังอยากขออยู่เสมอ\nไม่ใช่เรื่องบังเอิญ\n\nแต่มันคือความเมตตา\nที่อัลลอฮ์ใส่ไว้ในหัวใจเรา",
+      "category": "@reliance.__",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479378282-gginks.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479379652-qvsp7c.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479380391-f4zxn2.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479381061-wsdu1u.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479381728-j102it.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479378282-gginks.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479379652-qvsp7c.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479380391-f4zxn2.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479381061-wsdu1u.jpg",
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793479381728-j102it.jpg"
+      ]
+    },
+    {
+      "id": "post-1793478895588",
+      "sort_order": 0,
+      "caption": "",
+      "category": "@vibesbysu._",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793478891555-3kd6l9.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793478891555-3kd6l9.jpg"
+      ]
+    },
+    {
+      "id": "post-1793478204791",
+      "sort_order": 0,
+      "caption": "",
+      "category": "@upto.nafiha",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793478202706-4f2lxo.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793478202706-4f2lxo.jpg"
+      ]
+    },
+    {
+      "id": "post-1793477883440",
+      "sort_order": 0,
+      "caption": "",
+      "category": "@27_.december_",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793477752336-3k0a0g.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793477752336-3k0a0g.jpg"
+      ]
+    },
+    {
+      "id": "post-1793477359060",
+      "sort_order": 0,
+      "caption": "",
+      "category": "@msrachelforlittles",
+      "images": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793477345976-goynjz.jpg"
+      ],
+      "alt_text": null,
+      "published": true,
+      "images_urls": [
+        "https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/islam/1793477345976-goynjz.jpg"
+      ]
+    }
+  ]
 }

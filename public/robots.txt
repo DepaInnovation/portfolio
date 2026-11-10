@@ -4,4 +4,4 @@ Allow: /
 Disallow: /admin/
 
 # Sitemap location
-Sitemap: https://rifhan.dev/sitemap.xml
+Sitemap: https://rifhan.pongity.com/sitemap.xml
