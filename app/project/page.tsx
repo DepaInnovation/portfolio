@@ -7,9 +7,9 @@ import { projectHtml } from '@/lib/html/projectHtml';
 
 function ProjectContent() {
   useEffect(() => {
-    // If project.js defined an init function or dispatch event
-    const event = new Event('DOMContentLoaded');
-    document.dispatchEvent(event);
+    if (typeof window !== 'undefined' && typeof (window as any).initProject === 'function') {
+      (window as any).initProject();
+    }
   }, []);
 
   return (
@@ -18,6 +18,11 @@ function ProjectContent() {
       <Script
         src="/js/project.js"
         strategy="afterInteractive"
+        onLoad={() => {
+          if (typeof window !== 'undefined' && typeof (window as any).initProject === 'function') {
+            (window as any).initProject();
+          }
+        }}
       />
     </>
   );

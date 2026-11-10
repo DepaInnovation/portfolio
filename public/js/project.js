@@ -550,40 +550,81 @@
       /* -----------------------------------------------------------------
          INIT & DATA FETCHING
          ----------------------------------------------------------------- */
+      let currentLoadedId = null;
+
       async function init() {
         const urlParams = new URLSearchParams(window.location.search);
-        const projectId = (urlParams.get('id') || '').trim();
+        let projectId = (urlParams.get('id') || '').trim();
+
+        if (!projectId) {
+          const parts = window.location.pathname.split('/').filter(Boolean);
+          if (parts[0] === 'project' && parts[1]) {
+            projectId = decodeURIComponent(parts[1]).trim();
+          }
+        }
 
         if (!projectId) {
           showNotFound();
           return;
         }
 
-        // 1. Try instant localStorage cache
-        const cacheKey = 'supabase_cache_projects_detail';
-        const cached = window.SupabaseApp ? window.SupabaseApp.getCache(cacheKey) : null;
-        let foundProject = null;
+        const normalizedId = projectId.toLowerCase();
+        if (currentLoadedId === normalizedId) {
+          return;
+        }
 
-        if (cached && Array.isArray(cached) && cached.length > 0) {
-          foundProject = cached.find(p => p.id === projectId && p.published !== false);
+        // 1. Try instant localStorage cache
+        let cachedList = null;
+        try {
+          const raw = localStorage.getItem('local_cache_projects') || localStorage.getItem('supabase_cache_projects');
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) cachedList = parsed;
+          }
+        } catch (_) {}
+
+        let foundProject = null;
+        if (cachedList && cachedList.length > 0) {
+          foundProject = cachedList.find(p => p && String(p.id).toLowerCase() === normalizedId && p.published !== false);
           if (foundProject) {
-            renderProject(foundProject, cached);
+            currentLoadedId = normalizedId;
+            renderProject(foundProject, cachedList);
           }
         }
 
         // 2. Fetch live data from internal Next.js API
         try {
           const res = await fetch('/api/projects');
-          if (!res.ok) throw new Error('API error ' + res.status);
-          const json = await res.json();
-          const list = Array.isArray(json.data) ? json.data : [];
-          const validProjects = list.filter(p => p && p.id && p.published !== false);
-          validProjects.sort((a, b) => (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0));
+          if (res.ok) {
+            const json = await res.json();
+            const list = Array.isArray(json.data) ? json.data : [];
+            const validProjects = list.filter(p => p && p.id && p.published !== false);
+            validProjects.sort((a, b) => (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0));
 
-          const match = validProjects.find(p => p.id === projectId);
-          if (match) {
-            renderProject(match, validProjects);
-          } else {
+            try {
+              localStorage.setItem('local_cache_projects', JSON.stringify(validProjects));
+            } catch (_) {}
+
+            const match = validProjects.find(p => String(p.id).toLowerCase() === normalizedId);
+            if (match) {
+              currentLoadedId = normalizedId;
+              renderProject(match, validProjects);
+              return;
+            }
+          }
+
+          // Fallback: fetch individual project by ID
+          const singleRes = await fetch(`/api/projects/${encodeURIComponent(projectId)}`);
+          if (singleRes.ok) {
+            const singleJson = await singleRes.json();
+            if (singleJson && singleJson.success && singleJson.data) {
+              currentLoadedId = normalizedId;
+              renderProject(singleJson.data, [singleJson.data]);
+              return;
+            }
+          }
+
+          if (!foundProject) {
             showNotFound();
           }
         } catch (err) {
@@ -594,5 +635,10 @@
         }
       }
 
-      document.addEventListener('DOMContentLoaded', init);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      window.initProject = init;
     })();

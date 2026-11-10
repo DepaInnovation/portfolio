@@ -478,7 +478,12 @@
 
       async function loadIslamPosts() {
         // Instant render from cache if available to prevent layout jump
-        const cached = window.SupabaseApp ? window.SupabaseApp.getCache('supabase_cache_islam') : null;
+        let cached = null;
+        try {
+          const raw = localStorage.getItem('supabase_cache_islam');
+          if (raw) cached = JSON.parse(raw);
+        } catch (_) {}
+
         if (cached && Array.isArray(cached) && cached.length > 0) {
           POSTS = cached;
           pruneAndSyncFavorites(cached);
@@ -512,6 +517,10 @@
 
           validPosts.sort((a, b) => (Number(a.sort_order) || 0) - (Number(b.sort_order) || 0));
           POSTS = validPosts;
+
+          try {
+            localStorage.setItem('supabase_cache_islam', JSON.stringify(validPosts));
+          } catch (_) {}
 
           pruneAndSyncFavorites(validPosts);
 

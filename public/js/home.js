@@ -1,6 +1,14 @@
 // Client-side interactions for Home Page
 (function() {
   function initHome() {
+    const mainEl = document.getElementById('main-content') || document.body;
+    if (mainEl && mainEl.dataset.homeInitialized === 'true') {
+      return;
+    }
+    if (mainEl) {
+      mainEl.dataset.homeInitialized = 'true';
+    }
+
     (function () {
       'use strict';
 
@@ -625,6 +633,9 @@
           } else {
             openAboutTab(pill);
           }
+          if (typeof playTabClickSound === 'function') {
+            playTabClickSound();
+          }
         });
 
         pill.addEventListener('keydown', (e) => {
@@ -665,6 +676,9 @@
         const toggleBadge = () => {
           const isNowActive = badge.classList.toggle('active');
           badge.setAttribute('aria-pressed', isNowActive ? 'true' : 'false');
+          if (typeof playTabClickSound === 'function') {
+            playTabClickSound();
+          }
         };
 
         badge.addEventListener('click', toggleBadge);
@@ -672,9 +686,6 @@
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             toggleBadge();
-            if (typeof playTabClickSound === 'function') {
-              playTabClickSound();
-            }
           }
         });
       });
