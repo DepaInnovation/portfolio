@@ -572,6 +572,27 @@
       margin-top: 1px;
     }
 
+    /* Pinned Post Badge Pill */
+    .post-pinned-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #78350f;
+      background: #fef08a;
+      border: 1.5px solid var(--border-black);
+      border-radius: 999px;
+      padding: 3px 9px;
+      box-shadow: 1.5px 1.5px 0px var(--border-black);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      user-select: none;
+      line-height: 1;
+      margin-left: auto;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+
     /* Media Area (1:1 Square) */
     .post-media-wrap {
       width: 100%;

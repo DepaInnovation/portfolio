@@ -222,11 +222,11 @@
 
           if ((Number(post.sort_order) || 0) < 0) {
             const pinBadge = document.createElement('span');
-            pinBadge.className = 'post-pin-badge';
-            pinBadge.innerHTML = '📌';
+            pinBadge.className = 'post-pinned-pill';
+            pinBadge.innerHTML = '📌 <span>Pinned</span>';
             pinBadge.title = 'Pinned Thread';
-            pinBadge.style.cssText = 'margin-left: auto; font-size: 0.95rem;';
             header.appendChild(pinBadge);
+            card.classList.add('is-pinned');
           }
 
           card.appendChild(header);
@@ -664,7 +664,8 @@
         if (activeSlideIndex < 0) activeSlideIndex = totalSlides - 1;
 
         // Category & Caption
-        lightboxCategory.textContent = post.category || 'Islamic Reminder';
+        const isPinned = (Number(post.sort_order) || 0) < 0;
+        lightboxCategory.textContent = (isPinned ? '📌 ' : '') + (post.category || 'Islamic Reminder');
         lightboxCaption.textContent = post.caption || '';
         lightboxCaption.style.display = (post.caption && post.caption.trim()) ? 'block' : 'none';
 
