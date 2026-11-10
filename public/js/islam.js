@@ -467,7 +467,24 @@
 
       function pruneAndSyncFavorites(validPosts) {
         const validIds = new Set(validPosts.map(p => p.id));
-        const savedFavs = getSavedFavorites();
+        let savedFavs = getSavedFavorites();
+
+        // ค่าเริ่มต้น: ตั้งให้เธรด @kruknompang เป็นค่ากดใจไว้เสมอสำหรับผู้เข้าชม
+        const SEED_KEY = 'islam-default-kru-v2';
+        try {
+          if (!localStorage.getItem(SEED_KEY)) {
+            const kruPost = validPosts.find(p =>
+              p.id === 'post-1793524892088' ||
+              (p.category && p.category.toLowerCase().includes('kruknompang')) ||
+              (p.caption && p.caption.includes('คุณครูขนมปัง'))
+            );
+            if (kruPost && !savedFavs.includes(kruPost.id)) {
+              savedFavs.push(kruPost.id);
+            }
+            localStorage.setItem(SEED_KEY, 'true');
+          }
+        } catch (_) {}
+
         const prunedFavs = savedFavs.filter(id => validIds.has(id));
         favorites = new Set(prunedFavs);
         saveFavorites(prunedFavs);
