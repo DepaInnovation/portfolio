@@ -10,6 +10,7 @@ function enrichIslamPost(item: any) {
   }
   return {
     ...item,
+    images: images_urls,
     images_urls,
   };
 }

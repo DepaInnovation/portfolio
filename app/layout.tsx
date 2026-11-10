@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import React from 'react';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rifhan.is-a.dev'),
+  metadataBase: new URL('https://rifhan.pongity.com'),
   title: 'Portfolio | Home',
   description:
     'Personal portfolio of a computer science student and robotics enthusiast. Clean, playful monochrome sketchbook design.',

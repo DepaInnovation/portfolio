@@ -10,6 +10,19 @@
       const STORAGE_KEY = 'islam-favorites';
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      function resolveImageUrl(img) {
+        if (!img || typeof img !== 'string') return '';
+        const clean = img.trim();
+        if (!clean) return '';
+        if (/^https?:\/\//i.test(clean) || clean.startsWith('/') || clean.startsWith('data:')) {
+          return clean;
+        }
+        if (window.SupabaseApp && typeof window.SupabaseApp.getStorageImageUrl === 'function') {
+          return window.SupabaseApp.getStorageImageUrl(clean);
+        }
+        return `https://fakucjlewuxhihbhsanu.supabase.co/storage/v1/object/public/site-images/${clean.replace(/^\/+/, '')}`;
+      }
+
       // =====================================================================
       // CUSTOM MOUSE CURSOR EFFECT (Matches /)
       // =====================================================================
@@ -212,9 +225,7 @@
           card.appendChild(header);
 
           // Media Area (1:1 square)
-          const firstImage = slides.length > 0 && window.SupabaseApp
-            ? window.SupabaseApp.getStorageImageUrl(slides[0])
-            : (slides[0] || '');
+          const firstImage = slides.length > 0 ? resolveImageUrl(slides[0]) : '';
           const mediaWrap = document.createElement('div');
           mediaWrap.className = 'post-media-wrap';
           mediaWrap.setAttribute('role', 'button');
@@ -492,6 +503,10 @@
             if (!item.id || typeof item.id !== 'string') return;
             if (!item.category) return;
             if (item.published === false) return;
+            const rawImages = Array.isArray(item.images) && item.images.length > 0
+              ? item.images
+              : (Array.isArray(item.images_urls) ? item.images_urls : []);
+            item.images = rawImages.map(resolveImageUrl).filter(Boolean);
             validPosts.push(item);
           });
 
@@ -553,7 +568,7 @@
           lightboxSliderTrack.appendChild(slide);
         } else {
           slides.forEach((imgPath, i) => {
-            const fullUrl = imgPath;
+            const fullUrl = resolveImageUrl(imgPath);
             const slide = document.createElement('div');
             slide.className = 'lightbox-slide';
 
