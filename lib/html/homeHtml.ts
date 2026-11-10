@@ -564,8 +564,8 @@ export const homeHtml = `
         </div>
         <div class="easter-modal-body">
           <h3 class="easter-modal-title">
-            POR MUNG TAI
-            <span class="easter-modal-sub">พ่อ มุ่ง (ลง) ใต้</span>
+            STOP CLICKING!
+            <span class="easter-modal-sub">หยุดกดได้แล้วว</span>
           </h3>
         </div>
         <div class="easter-modal-footer">
