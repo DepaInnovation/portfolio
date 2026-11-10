@@ -220,10 +220,12 @@
           userInfo.appendChild(metaText);
           header.appendChild(userInfo);
 
-          if ((Number(post.sort_order) || 0) < 0) {
+          const isPinned = (Number(post.sort_order) || 0) < 0 || String(post.sort_order || '').startsWith('-');
+
+          if (isPinned) {
             const pinBadge = document.createElement('span');
             pinBadge.className = 'post-pinned-pill';
-            pinBadge.innerHTML = '📌 <span>Pinned</span>';
+            pinBadge.innerHTML = '📌 <span>PINNED</span>';
             pinBadge.title = 'Pinned Thread';
             header.appendChild(pinBadge);
             card.classList.add('is-pinned');
@@ -238,6 +240,13 @@
           mediaWrap.setAttribute('role', 'button');
           mediaWrap.setAttribute('tabindex', '0');
           mediaWrap.setAttribute('aria-label', `Open post: ${post.caption || ''}`);
+
+          if (isPinned) {
+            const cornerSticker = document.createElement('div');
+            cornerSticker.className = 'pinned-corner-badge';
+            cornerSticker.innerHTML = '📌 PINNED';
+            mediaWrap.appendChild(cornerSticker);
+          }
 
           const placeholder = document.createElement('div');
           placeholder.className = 'post-placeholder';

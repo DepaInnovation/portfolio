@@ -576,21 +576,47 @@
     .post-pinned-pill {
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      font-weight: 700;
-      color: #78350f;
+      font-weight: 800;
+      color: #0a0a0a;
       background: #fef08a;
       border: 1.5px solid var(--border-black);
       border-radius: 999px;
       padding: 3px 9px;
-      box-shadow: 1.5px 1.5px 0px var(--border-black);
+      box-shadow: 2px 2px 0px var(--border-black);
       display: inline-flex;
       align-items: center;
       gap: 4px;
       user-select: none;
       line-height: 1;
       margin-left: auto;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.02em;
       flex-shrink: 0;
+    }
+
+    .pinned-corner-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      background: #fef08a;
+      color: #0a0a0a;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border: 1.5px solid #0a0a0a;
+      border-radius: 4px;
+      box-shadow: 2px 2px 0px #0a0a0a;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .post-card.is-pinned {
+      border: 2px solid #0a0a0a;
+      box-shadow: 4px 4px 0px #fde047, 4px 4px 0px 2px #0a0a0a;
     }
 
     /* Media Area (1:1 Square) */
