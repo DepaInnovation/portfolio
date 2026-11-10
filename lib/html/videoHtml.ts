@@ -18,9 +18,9 @@ export const videoHtml = `
         <span>PORTFOLIO</span>
       </a>
       <ul class="nav-links">
-        <li><a href="index.html#about" class="nav-link">About</a></li>
-        <li><a href="index.html#skills" class="nav-link">Skills</a></li>
-        <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+        <li><a href="/#about" class="nav-link">About</a></li>
+        <li><a href="/#skills" class="nav-link">Skills</a></li>
+        <li><a href="/#projects" class="nav-link">Projects</a></li>
         <li><a href="/video" class="nav-link active">Videos</a></li>
         <li><a href="/islam" class="nav-link">Islam</a></li>
       </ul>

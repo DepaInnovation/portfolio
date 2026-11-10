@@ -383,7 +383,7 @@ export const homeHtml = `
               </p>
               <span class="channel-subcategories-label">// TOPICS</span>
               <div class="channel-pills-wrap">
-                <a href="video.html?cat=calculus" class="channel-pill-btn">
+                <a href="/video?cat=calculus" class="channel-pill-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <path d="M3 17l6-6 4 4 8-8"></path>
@@ -391,7 +391,7 @@ export const homeHtml = `
                   </svg>
                   <span>Limits and Continuity</span>
                 </a>
-                <a href="video.html?cat=calculus" class="channel-pill-btn">
+                <a href="/video?cat=calculus" class="channel-pill-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <line x1="4" y1="20" x2="20" y2="4"></line>
@@ -399,7 +399,7 @@ export const homeHtml = `
                   </svg>
                   <span>Derivatives</span>
                 </a>
-                <a href="video.html?cat=calculus" class="channel-pill-btn">
+                <a href="/video?cat=calculus" class="channel-pill-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
                     <path d="M15 3a3 3 0 0 0-3 3v12a3 3 0 0 1-3 3"></path>
@@ -408,7 +408,7 @@ export const homeHtml = `
                 </a>
               </div>
             </div>
-            <a href="video.html?cat=calculus" class="channel-action-btn" aria-label="Go directly to Calculus videos">
+            <a href="/video?cat=calculus" class="channel-action-btn" aria-label="Go directly to Calculus videos">
               <span>Learn Calculus</span>
               <span>→</span>
             </a>
@@ -433,7 +433,7 @@ export const homeHtml = `
               </p>
               <span class="channel-subcategories-label">// TOPICS</span>
               <div class="channel-pills-wrap">
-                <a href="video.html?cat=robotics" class="channel-pill-btn">
+                <a href="/video?cat=robotics" class="channel-pill-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="11" width="18" height="10" rx="2"></rect>
                     <circle cx="12" cy="5" r="2"></circle>
@@ -441,14 +441,14 @@ export const homeHtml = `
                   </svg>
                   <span>Robotics</span>
                 </a>
-                <a href="video.html?cat=ai" class="channel-pill-btn">
+                <a href="/video?cat=ai" class="channel-pill-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                     <circle cx="12" cy="12" r="3"></circle>
                   </svg>
                   <span>AI &amp; Vision</span>
                 </a>
-                <a href="video.html?cat=iot" class="channel-pill-btn">
+                <a href="/video?cat=iot" class="channel-pill-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="2" y1="12" x2="22" y2="12"></line>
@@ -456,7 +456,7 @@ export const homeHtml = `
                   </svg>
                   <span>Web &amp; IoT</span>
                 </a>
-                <a href="video.html?cat=programming" class="channel-pill-btn">
+                <a href="/video?cat=programming" class="channel-pill-btn">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="16 18 22 12 16 6"></polyline>
                     <polyline points="8 6 2 12 8 18"></polyline>
@@ -465,7 +465,7 @@ export const homeHtml = `
                 </a>
               </div>
             </div>
-            <a href="video.html?cat=computer" class="channel-action-btn" aria-label="Explore all Computer videos">
+            <a href="/video?cat=computer" class="channel-action-btn" aria-label="Explore all Computer videos">
               <span>Learn Computer</span>
               <span>→</span>
             </a>

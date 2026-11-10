@@ -43,6 +43,50 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/video.html',
+        destination: '/video',
+        permanent: true,
+      },
+      {
+        source: '/islam.html',
+        destination: '/islam',
+        permanent: true,
+      },
+      {
+        source: '/project.html',
+        destination: '/project',
+        permanent: true,
+      },
+      {
+        source: '/index.html',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/video.html',
+        destination: '/video',
+      },
+      {
+        source: '/islam.html',
+        destination: '/islam',
+      },
+      {
+        source: '/project.html',
+        destination: '/project',
+      },
+      {
+        source: '/index.html',
+        destination: '/',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

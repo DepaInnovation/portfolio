@@ -7,7 +7,7 @@ export const projectHtml = `
     <div class="container">
       <!-- TOP NAVIGATION -->
       <nav class="top-nav">
-        <a href="index.html#showcase" class="back-btn" id="backToShowcaseBtn">
+        <a href="/#showcase" class="back-btn" id="backToShowcaseBtn">
           ← Back to Showcase
         </a>
       </nav>
@@ -92,7 +92,7 @@ export const projectHtml = `
         <p class="error-text">
           ขออภัย ไม่พบข้อมูลผลงานที่ท่านต้องการ หรือผลงานนี้ยังไม่ได้รับการเผยแพร่
         </p>
-        <a href="index.html#showcase" class="back-btn">
+        <a href="/#showcase" class="back-btn">
           ← กลับสู่หน้า Showcase
         </a>
       </div>
